@@ -1,6 +1,6 @@
-var app = angular.module("myApp",[]);
+var app = angular.module("domRdmz",[]);
 
-app.controller("myController",["$scope","$http",function($scope,$http){
+app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 
 	function resetMyKingdom() {	
 
