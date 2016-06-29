@@ -104,7 +104,7 @@
 		
 		$http({
 			method: 'GET',
-			url: 'http://localhost/DevLab/cards.json'
+			url: 'cards.json'
 		}).then(
 			function successCallback(response){
 				$scope.all_cards = response.data.cards;
