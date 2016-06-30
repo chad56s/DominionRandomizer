@@ -235,6 +235,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			//TODO: bug: card could be in both kingdom and black market because we're using different copies of the decks for fulfilling minimum requirements and filling the black market
 			if($scope.my_kingdom.kingdom_cards.some(function(card) { return card.card == "Black Market"; }))
 				createBlackMarket(validRandomizers);
+			//lastly, check black market for young witch - I thought it best to do bane first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
+			if($scope.my_kingdom.blackmarket.some(function(card) { return card.card == "Young Witch"; }))
+				$scope.my_kingdom.bane = drawBane(validRandomizers);
 			
 			var ucpnum1 = getRandomNumber(0,9);
 			var ucpnum2 = getRandomNumber(0,9);
