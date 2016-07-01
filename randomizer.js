@@ -2,6 +2,16 @@ var app = angular.module("domRdmz",[]);
 
 app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 
+	var SET_DARK_AGES = "Dark Ages";
+	var SET_PROSPERITY = "Prosperity";
+
+	var FUNCTION_EVENT = "Event";
+	var FUNCTION_KINGDOM = "Kingdom";
+	var FUNCTION_LANDMARK = "Landmark";
+
+	var CARD_BLACK_MARKET = "Black Market";
+	var CARD_YOUNG_WITCH = "Young Witch";
+
 	function resetMyKingdom() {	
 
 		$scope.my_kingdom = {
@@ -23,19 +33,23 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	//drawCard removes random card from deck and returns it
 	//requirements = function that returns true if the picked card fits some criteria
 	function drawCard(deck,requirements) {
-		var index = 0;
+		var index = -1;
+		var card = null;
+		
 		if(requirements) {
 			var matchingIndices = [];
 			deck.forEach(function(card,idx,ar) {
 				if (requirements(card))
 					matchingIndices.push(idx);
 			});
-			index = matchingIndices[getRandomNumber(0,matchingIndices.length-1)];
-		}
-		else
-			index = getRandomNumber(0,deck.length - 1);
 			
-		return deck.splice(index,1)[0];
+			if(matchingIndices.length > 0)
+				index = matchingIndices[getRandomNumber(0,matchingIndices.length-1)];
+		}
+		else if(deck.length > 0)
+			index = getRandomNumber(0,deck.length - 1);
+		
+		return index > -1 ? deck.splice(index,1)[0] : null;
 	}
 	
 	function remaining_kingdom_cards() {
@@ -44,7 +58,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	
 	function drawBane(deck) {
 		var isEligibleBane = function(card) { 
-			return	card.function == "Kingdom" &&
+			return	card.function == FUNCTION_KINGDOM &&
 					card.costcoins >=2 && 
 					card.costcoins <= 3 && 
 					card.costpotions == 0 && 
@@ -113,7 +127,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 				card.array_index = idx;
 				if($scope.filterIsRandomizer(card))
 					$scope.randomizer_cards.push(card);
-				if(card.function == "Kingdom")
+				if(card.function == FUNCTION_KINGDOM)
 					$scope.kingdom_cards.push(card);
 			});
 			
@@ -124,7 +138,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	);
 	
 	$scope.filterIsRandomizer = function(card,index,ar) {
-		return card.function == 'Kingdom' || card.function == 'Event' || card.function == 'Landmark';
+		return card.function == FUNCTION_KINGDOM || card.function == FUNCTION_EVENT || card.function == FUNCTION_LANDMARK;
 	}
 	
 	$scope.filterCardInSelectedSet = function(card,index,ar) {	
@@ -136,7 +150,16 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	}
 	
 	$scope.filterKingdomCards = function(card,index,ar) {
-		return card.function == "Kingdom";
+		return card.function == FUNCTION_KINGDOM;
+	}
+	
+	
+	$scope.findCard = function(deck,text) {
+		return deck.find(c => c.card == text);
+	}
+	
+	$scope.cardInDeck = function(deck,text) {
+		return deck.some(c => c.card == text);
 	}
 	
 	$scope.displayCost = function(card) {
@@ -150,13 +173,11 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	}
 	
 	$scope.createMyKingdom = function() {
-		var bDoBlackMarket = false;
-		var bDesignateBane = false;
 		
 		resetMyKingdom();
 		
 		var validRandomizers = $scope.randomizer_cards.filter($scope.filterCardInSelectedSet);
-		var countKingdomCards = validRandomizers.filter(c => c.function == "Kingdom").length;
+		var countKingdomCards = validRandomizers.filter(c => c.function == FUNCTION_KINGDOM).length;
 		
 		//total the user's minimum requirements to make sure they're not unfillable
 		var minTotal = $scope.sets.reduce( (tot, set) => tot + parseInt(set.min), 0 );
@@ -169,21 +190,17 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			while($scope.my_kingdom.kingdom_cards.length < 10) {
 				var card = drawCard(validRandomizers);
 				
-				if(card.function == "Kingdom") {
+				if(card.function == FUNCTION_KINGDOM) {
 					$scope.my_kingdom.kingdom_cards.push(card);
 					card.num_times_picked++;
-					if(card.card == "Black Market")
-						bDoBlackMarket = true;
-					else if(card.card == "Young Witch")
-						bDesignateBane = true;
 				}
-				else if(card.function == "Event" 
+				else if(card.function == FUNCTION_EVENT 
 						&& $scope.my_kingdom.events.length < $scope.my_settings.events.max
 						&& $scope.my_kingdom.events.length + $scope.my_kingdom.landmarks.length < $scope.my_settings.events_plus_landmarks.max) {
 					$scope.my_kingdom.events.push(card);	
 					card.num_times_picked++;
 				}
-				else if(card.function == "Landmark" 
+				else if(card.function == FUNCTION_LANDMARK 
 						&& $scope.my_kingdom.landmarks.length < $scope.my_settings.landmarks.max
 						&& $scope.my_kingdom.events.length + $scope.my_kingdom.landmarks.length < $scope.my_settings.events_plus_landmarks.max) {
 					$scope.my_kingdom.landmarks.push(card);
@@ -207,7 +224,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 					return tot + (card.set == set.name ? 1 : 0); 
 				}, 0 );
 				var cardReqs = function(card) {
-						return card.function == "Kingdom" && card.set == set.name;
+						return card.function == FUNCTION_KINGDOM && card.set == set.name;
 				};
 				setSpares[set.name] = deficit < 0 ? -deficit : 0;
 				//while there's a deficit, filter the valid kingdom cards to this set and pick enough to fill the deficit
@@ -230,21 +247,21 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 				}
 			}
 			
-			if($scope.my_kingdom.kingdom_cards.some(function(card) { return card.card == "Young Witch"; }))
+			if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_YOUNG_WITCH))
 				$scope.my_kingdom.bane = drawBane(validRandomizers);
 			//TODO: bug: card could be in both kingdom and black market because we're using different copies of the decks for fulfilling minimum requirements and filling the black market
-			if($scope.my_kingdom.kingdom_cards.some(function(card) { return card.card == "Black Market"; }))
+			if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_BLACK_MARKET))
 				createBlackMarket(validRandomizers);
 			//lastly, check black market for young witch - I thought it best to do bane first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
-			if($scope.my_kingdom.blackmarket.some(function(card) { return card.card == "Young Witch"; }))
+			if($scope.cardInDeck($scope.my_kingdom.blackmarket,CARD_YOUNG_WITCH))
 				$scope.my_kingdom.bane = drawBane(validRandomizers);
 			
 			var ucpnum1 = getRandomNumber(0,9);
 			var ucpnum2 = getRandomNumber(0,9);
 			var usnum1 = getRandomNumber(0,9);
 			var usnum2 = getRandomNumber(0,9);
-			$scope.my_kingdom.use_col_plat = $scope.my_kingdom.kingdom_cards[ucpnum1].set == "Prosperity" || $scope.my_kingdom.kingdom_cards[ucpnum1].set == "Prosperity";
-			$scope.my_kingdom.use_shelters = $scope.my_kingdom.kingdom_cards[usnum1].set == "Dark Ages" || $scope.my_kingdom.kingdom_cards[usnum1].set == "Dark Ages";
+			$scope.my_kingdom.use_col_plat = $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY || $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY;
+			$scope.my_kingdom.use_shelters = $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES || $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES;
 			
 			if($scope.my_kingdom.use_col_plat) $scope.stats.w_col_plat++;
 			if($scope.my_kingdom.use_shelters) $scope.stats.w_shelt++;
