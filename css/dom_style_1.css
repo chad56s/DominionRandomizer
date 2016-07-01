@@ -1,0 +1,70 @@
+
+@import url(http://weloveiconfonts.com/api/?family=iconicstroke);
+
+/* iconicstroke */
+[class*="iconicstroke-"]:before {
+  font-family: 'IconicStroke', sans-serif;
+}
+
+.iconicstroke-cog {
+	color: #fff;
+}
+
+body {
+	width:100%;
+}
+
+div#settings_bar {
+	width:100%;
+	background-color: #999;
+	color: #fff;
+	font-family: 'IconicStroke', sans-serif;
+	font-size: 3em;
+	padding: 10px;
+}
+
+div#settings_sets {
+	font-size: .25em;
+}
+
+div#my_kingdom {
+	width:100%;
+	height:100%;
+	background-color: #23bf83;
+	color: #fff;
+	padding:10px;
+}
+
+div#generate_container{
+	width:15%;
+	float:left;
+	border: 1px solid black;
+}
+
+div#results_container{
+	margin-left:15%;
+	width: 75%;
+	border: 1px solid white;
+}
+
+div#generate {
+	font-size: 3em;
+	color: #fff;
+	margin:20px;
+	height:75%;
+}
+
+div#results {
+	height: 75%;
+	margin:20px;
+	overflow:auto;
+}
+
+
+div#blackmarket {
+	margin-top:20px;
+	color: #0f0;
+	width:90%;
+	border:1px solid green;
+	clear:both;
+}

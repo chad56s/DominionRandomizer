@@ -87,6 +87,8 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		w_col_plat: 0,
 		w_both: 0
 	};
+	
+	$scope.show_settings = false;
 	$scope.testing_tools = false;
 	
 	$scope.all_cards = [];

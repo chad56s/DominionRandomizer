@@ -1,0 +1,61 @@
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="randomizer.js"></script>
+
+	<link  href="css/dom_style_1.css" rel="stylesheet" type="text/css" />
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Dominion Randomizer</title>
+</head>
+
+<body ng-app="domRdmz" ng-controller="domRdmz_ctrl">
+
+	<div id="settings_bar">
+		<span class="iconicstroke-cog" ng-click="show_settings = !show_settings"></span>
+		<div ng-if="show_settings" id="settings_sets">
+			<input type="checkbox" ng-repeat-start="set in sets | orderBy:'release_order'" ng-model="set.selected">{{set.name}}
+			<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
+			<br ng-repeat-end/>
+		</div>
+	</div>
+	<div id="my_kingdom">
+		<div id="generate_container">
+			<div id="generate">
+				<span class="iconicstroke-play" ng-click="createMyKingdom()"></span>
+			</div>
+		</div>
+		<div id="results_container">
+			<div id="results">
+				<div ng-if="my_kingdom.kingdom_cards.length > 0">
+					<p ng-if="my_kingdom.use_col_plat">Use Colony and Platinum</p>
+					<p ng-if="my_kingdom.use_shelters">Use Shelters</p>
+					<p>
+						Kingdom Cards {{my_kingdom.kingdom_cards.length}}:
+						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:['costcoins','costpotions','costdebt','card']">{{card.card}} ({{displayCost(card)}}) ({{card.set}})<span ng-if="card.card=='Young Witch'">Bane:{{my_kingdom.bane.card}}</span></li>
+					</p>
+					<p ng-if="my_kingdom.blackmarket.length > 0">
+						Black Market cards:
+						<li ng-repeat="card in my_kingdom.blackmarket">{{card.card}} ({{displayCost(card)}}) ({{card.set}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
+					</p>
+					<p ng-if="my_kingdom.events.length > 0">
+						Event Cards:
+						<li ng-repeat="card in my_kingdom.events | orderBy:['costcoins','costpotions','costdebt','card']">{{card.card}} ({{displayCost(card)}})</li>
+					</p>
+					<p ng-if="my_kingdom.landmarks.length > 0">
+						Landmark Cards:
+						<li ng-repeat="card in my_kingdom.landmarks | orderBy:'card'">{{card.card}}</li>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="blackmarket">
+			blackmarket
+		</div>
+	</div>
+
+</body>
+
+</html>
