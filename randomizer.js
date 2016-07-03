@@ -15,6 +15,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	var SORT_SET_BY_NAME = 'name';
 	var SORT_SET_BY_ORDER = 'release_order';
 	
+	var SORT_CARDS_BY_COST = ['costcoins','costpotions','costdebt','card'];
+	var SORT_CARDS_BY_NAME = 'card';
+	var SORT_CARDS_BY_SET = "";
+	
 	function resetMyKingdom() {	
 
 		$scope.my_kingdom = {
@@ -110,11 +114,24 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		}
 	);
 	
+	Object.defineProperties($scope, {
+		"sort_cards_by_cost": {
+			value: SORT_CARDS_BY_COST,
+			writable:false
+		},
+		"sort_cards_by_name": {
+			value: SORT_CARDS_BY_NAME,
+			writable:false
+		}
+	});
+	
+	
 	$scope.my_settings = {
 		events: {min: 0, max: 2},
 		landmarks: {min: 0, max: 2},
 		events_plus_landmarks: {min: 0, max: 2},
-		sort_sets_by: SORT_SET_BY_ORDER
+		sort_sets_by: SORT_SET_BY_ORDER,
+		sort_cards_by: $scope.sort_cards_by_cost
 	};
 	
 	$scope.sets = [];
