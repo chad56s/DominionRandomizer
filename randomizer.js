@@ -17,7 +17,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	
 	var SORT_CARDS_BY_COST = ['costcoins','costpotions','costdebt','card'];
 	var SORT_CARDS_BY_NAME = 'card';
-	var SORT_CARDS_BY_SET = "";
+	var SORT_CARDS_BY_SET = "[cardSetSortOrder,'card']";
 	
 	function resetMyKingdom() {	
 
@@ -122,6 +122,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		"sort_cards_by_name": {
 			value: SORT_CARDS_BY_NAME,
 			writable:false
+		},
+		"sort_cards_by_set": {
+			value: SORT_CARDS_BY_SET,
+			writable:false
 		}
 	});
 	
@@ -131,7 +135,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		landmarks: {min: 0, max: 2},
 		events_plus_landmarks: {min: 0, max: 2},
 		sort_sets_by: SORT_SET_BY_ORDER,
-		sort_cards_by: $scope.sort_cards_by_cost
+		sort_cards_by: SORT_CARDS_BY_COST
 	};
 	
 	$scope.sets = [];
@@ -188,6 +192,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		return card.function == FUNCTION_KINGDOM;
 	}
 	
+	$scope.cardSetSortOrder = function(card) {
+		return $scope.sets.find(s => s.name == card.set)[$scope.my_settings.sort_sets_by];
+	}
 	
 	$scope.findCard = function(deck,text) {
 		return deck.find(c => c.card == text);

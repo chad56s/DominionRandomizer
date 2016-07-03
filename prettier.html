@@ -38,6 +38,7 @@
 				<div ng-if="my_kingdom.kingdom_cards.length > 0">
 					<input type="radio" ng-model="my_settings.sort_cards_by" ng-value="{{sort_cards_by_cost}}">Cost</input>
 					<input type="radio" ng-model="my_settings.sort_cards_by" ng-value="{{sort_cards_by_name}}">Name</input>
+					<input type="radio" ng-model="my_settings.sort_cards_by" ng-value="{{sort_cards_by_set}}">Set</input>
 					
 					<p ng-if="my_kingdom.use_col_plat">Use Colony and Platinum</p>
 					<p ng-if="my_kingdom.use_shelters">Use Shelters</p>
