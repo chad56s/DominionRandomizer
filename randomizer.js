@@ -156,10 +156,11 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			
 			//start out selecting  all sets
 			//TODO: this should all be part of my_settings
-			$scope.sets.forEach(s => {
-				s.selected = true;
-				s.min = 0;
-				s.max = 10;}
+			$scope.sets.forEach(function(s) {
+					s.selected = true;
+					s.min = 0;
+					s.max = 10;
+				}
 			);
 			
 			//find the unique sets, construct the initial randomizer deck and collect the kingdom cards
@@ -183,7 +184,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	}
 	
 	$scope.filterCardInSelectedSet = function(card,index,ar) {	
-		return $scope.sets.filter($scope.filterSelectedSets).find(s => s.name == card.set);
+		return $scope.sets.filter($scope.filterSelectedSets).find(function(s){return s.name == card.set});
 	}
 	
 	$scope.filterSelectedSets = function(set,index,ar) {
@@ -195,15 +196,15 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	}
 	
 	$scope.cardSetSortOrder = function(card) {
-		return $scope.sets.find(s => s.name == card.set)[$scope.my_settings.sort_sets_by];
+		return $scope.sets.find(function(s) { return s.name == card.set})[$scope.my_settings.sort_sets_by];
 	}
 	
 	$scope.findCard = function(deck,text) {
-		return deck.find(c => c.card == text);
+		return deck.find(function(c){ return c.card == text});
 	}
 	
 	$scope.cardInDeck = function(deck,text) {
-		return deck.some(c => c.card == text);
+		return deck.some(function(c) { return c.card == text});
 	}
 	
 	$scope.displayCost = function(card) {
@@ -221,10 +222,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		resetMyKingdom();
 		
 		var validRandomizers = $scope.randomizer_cards.filter($scope.filterCardInSelectedSet);
-		var countKingdomCards = validRandomizers.filter(c => c.function == FUNCTION_KINGDOM).length;
+		var countKingdomCards = validRandomizers.filter(function(c) { return c.function == FUNCTION_KINGDOM;}).length;
 		
 		//total the user's minimum requirements to make sure they're not unfillable
-		var minTotal = $scope.sets.reduce( (tot, set) => tot + parseInt(set.min), 0 );
+		var minTotal = $scope.sets.reduce( function(tot, set){ return tot + parseInt(set.min)}, 0 );
 		
 		$scope.stats.total_created++;
 		
@@ -264,7 +265,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			for(var s = 0; s < filteredSets.length; s++) {
 				var set = filteredSets[s];
 				//subtract the number of this set's cards in our kingdom from the min required to get the deficit
-				var deficit = set.min - $scope.my_kingdom.kingdom_cards.reduce( (tot, card) => { 
+				var deficit = set.min - $scope.my_kingdom.kingdom_cards.reduce( function(tot, card) { 
 					return tot + (card.set == set.name ? 1 : 0); 
 				}, 0 );
 				var cardReqs = function(card) {
