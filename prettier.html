@@ -16,9 +16,15 @@
 	<div id="settings_bar">
 		<span class="iconicstroke-cog" ng-click="show_settings = !show_settings"></span>
 		<div ng-if="show_settings" id="settings_sets">
-			<input type="checkbox" ng-repeat-start="set in sets | orderBy:my_settings.sort_sets_by" ng-model="set.selected">{{set.name}}
-			<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
-			<br ng-repeat-end/>
+			<div>
+				<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_name}}">Name</input>
+				<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_release}}">Release Order</input>
+			</div>
+			<div>
+				<input type="checkbox" ng-repeat-start="set in sets | orderBy:my_settings.sort_sets_by" ng-model="set.selected">{{set.name}}
+				<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
+				<br ng-repeat-end/>
+			</div>
 		</div>
 	</div>
 	<div id="my_kingdom">

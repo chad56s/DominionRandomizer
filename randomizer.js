@@ -98,6 +98,18 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.randomizer_cards = [];
 	$scope.kingdom_cards = [];
 	
+	Object.defineProperties($scope, {
+			"sort_sets_by_name": {
+				value: SORT_SET_BY_NAME,
+				writable:false
+			},
+			"sort_sets_by_release": {
+				value: SORT_SET_BY_ORDER,
+				writable:false
+			}
+		}
+	);
+	
 	$scope.my_settings = {
 		events: {min: 0, max: 2},
 		landmarks: {min: 0, max: 2},
