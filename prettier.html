@@ -61,14 +61,20 @@
 				</div>
 			</div>
 		</div>
-		<div id="blackmarket" ng-if="my_kingdom.blackmarket.length > 0">
-			<button ng-click="flopBlackMarket()">Flop Black Market</button>
-			<div ng-if="my_kingdom.blackmarket_flop.length > 0">
-				<li ng-repeat="card in my_kingdom.blackmarket_flop | orderBy:my_settings.sort_cards_by">
-					{{card.card}} ({{displayCost(card)}})
-				</li>
+		<div id="blackmarket_container" ng-if="my_kingdom.blackmarket.length > 0 || my_kingdom.blackmarket_flop.length > 0">
+			<div id="blackmarket">
+				<button ng-click="flopBlackMarket()">Flop Black Market</button>
+				<div id="blackmarket_flop" ng-if="my_kingdom.blackmarket_flop.length > 0">
+					<li ng-repeat="card in my_kingdom.blackmarket_flop | orderBy:my_settings.sort_cards_by">
+						<button ng-if="!blackmarket_card_picked" ng-click="selectBlackMarket(card)">select</button>
+						<button ng-click="returnBlackMarket(card)">return</button>
+						{{card.card}} ({{displayCost(card)}}) 
+						<span class='card_text'>{{card.rules}}</span>
+					</li>
+				</div>
 			</div>
 		</div>
+		
 	</div>
 
 </body>

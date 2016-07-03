@@ -60,11 +60,22 @@ div#results {
 	overflow:auto;
 }
 
+div#blackmarket_container {
+	margin-top:20px;
+	width:90%;
+	border:1px solid #000;
+	clear:both;
+}
 
 div#blackmarket {
-	margin-top:20px;
-	color: #0f0;
-	width:90%;
-	border:1px solid green;
-	clear:both;
+	margin: 20px;
+	color: #333;
+}
+
+div#blackmarket_flop {
+	margin: 20px;
+}
+
+.card_text {
+	font-style: italic;
 }

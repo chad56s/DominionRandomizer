@@ -31,6 +31,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			use_col_plat: false,
 			use_shelters: false
 		};
+		$scope.blackmarket_card_picked = false;
 	}
 	
 	function getRandomNumber(min,max) {
@@ -102,6 +103,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.all_cards = [];
 	$scope.randomizer_cards = [];
 	$scope.kingdom_cards = [];
+	$scope.blackmarket_card_picked = false;
 	
 	Object.defineProperties($scope, {
 			"sort_sets_by_name": {
@@ -314,6 +316,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	}
 	
 	$scope.flopBlackMarket =function() {
+		
 		var bm = $scope.my_kingdom.blackmarket;
 		var bmf = $scope.my_kingdom.blackmarket_flop;
 		//if there's an existing flop, put it at the bottom of the black market
@@ -321,10 +324,27 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			bm = $scope.my_kingdom.blackmarket = bm.concat(bmf);
 			bmf = $scope.my_kingdom.blackmarket_flop = [];
 		}
+		$scope.blackmarket_card_picked = false;
 		while(bm.length && bmf.length < 3) {
 			bmf.push(bm.shift())
 		}
 		
+	}
+	
+	$scope.selectBlackMarket = function(card) {
+		var i = $scope.my_kingdom.blackmarket_flop.indexOf(card);
+		if(i > -1) {
+			$scope.my_kingdom.blackmarket_flop.splice(i,1);
+			$scope.blackmarket_card_picked = true;
+		}
+	}
+	
+	$scope.returnBlackMarket = function(card) {
+		var i = $scope.my_kingdom.blackmarket_flop.indexOf(card);
+		if(i > -1) {
+			$scope.my_kingdom.blackmarket_flop.splice(i,1);
+			$scope.my_kingdom.blackmarket.push(card);
+		}
 	}
 	
 	$scope.createMultiple = function() {
