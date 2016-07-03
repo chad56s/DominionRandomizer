@@ -16,7 +16,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	var SORT_SET_BY_ORDER = 'release_order';
 	
 	var SORT_CARDS_BY_COST = ['costcoins','costpotions','costdebt','card'];
-	var SORT_CARDS_BY_NAME = 'card';
+	var SORT_CARDS_BY_NAME = "['card']";
 	var SORT_CARDS_BY_SET = "[cardSetSortOrder,'card']";
 	
 	function resetMyKingdom() {	
@@ -26,6 +26,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			events: [],
 			landmarks: [],
 			blackmarket: [],
+			blackmarket_flop: [],
 			bane: null,
 			use_col_plat: false,
 			use_shelters: false
@@ -116,8 +117,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	
 	Object.defineProperties($scope, {
 		"sort_cards_by_cost": {
-			value: SORT_CARDS_BY_COST,
-			writable:false
+			get: function() {return SORT_CARDS_BY_COST}
 		},
 		"sort_cards_by_name": {
 			value: SORT_CARDS_BY_NAME,
@@ -310,6 +310,20 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			if($scope.my_kingdom.use_shelters && $scope.my_kingdom.use_col_plat) $scope.stats.w_both++;
 		}
 		
+		
+	}
+	
+	$scope.flopBlackMarket =function() {
+		var bm = $scope.my_kingdom.blackmarket;
+		var bmf = $scope.my_kingdom.blackmarket_flop;
+		//if there's an existing flop, put it at the bottom of the black market
+		if(bmf.length) {
+			bm = $scope.my_kingdom.blackmarket = bm.concat(bmf);
+			bmf = $scope.my_kingdom.blackmarket_flop = [];
+		}
+		while(bm.length && bmf.length < 3) {
+			bmf.push(bm.shift())
+		}
 		
 	}
 	
