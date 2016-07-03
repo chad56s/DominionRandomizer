@@ -38,7 +38,6 @@ div#my_kingdom {
 div#generate_container{
 	width:15%;
 	float:left;
-	border: 1px solid black;
 }
 
 div#results_container{
@@ -51,11 +50,12 @@ div#generate {
 	font-size: 3em;
 	color: #fff;
 	margin:20px;
-	height:75%;
+	height:300px;
+	text-align:right;
 }
 
 div#results {
-	height: 75%;
+	height: 300px;
 	margin:20px;
 	overflow:auto;
 }
