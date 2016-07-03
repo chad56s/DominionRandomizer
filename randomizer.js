@@ -11,7 +11,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 
 	var CARD_BLACK_MARKET = "Black Market";
 	var CARD_YOUNG_WITCH = "Young Witch";
-
+	
+	var SORT_SET_BY_NAME = 'name';
+	var SORT_SET_BY_ORDER = 'release_order';
+	
 	function resetMyKingdom() {	
 
 		$scope.my_kingdom = {
@@ -98,7 +101,8 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.my_settings = {
 		events: {min: 0, max: 2},
 		landmarks: {min: 0, max: 2},
-		events_plus_landmarks: {min: 0, max: 2}
+		events_plus_landmarks: {min: 0, max: 2},
+		sort_sets_by: SORT_SET_BY_ORDER
 	};
 	
 	$scope.sets = [];
