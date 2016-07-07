@@ -8,6 +8,7 @@
 
 body {
 	width:100%;
+	background-color: #23bf83;
 }
 
 div#settings_bar {
@@ -37,8 +38,6 @@ div.set_group {
 
 div#my_kingdom {
 	width:100%;
-	height:100%;
-	background-color: #23bf83;
 	color: #fff;
 	padding:10px;
 }
