@@ -32,15 +32,20 @@
 				Sets
 				<div class="settings_group">
 					<div>
+						Sort:
 						<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_name}}" ng-click="chunkSets()">Name</input>
 						<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_release}}" ng-click="chunkSets()">Release Order</input>
 					</div>
-					<div ng-repeat="div in chunkedSets" class="set_group">
+					<div ng-repeat="div in chunkedSets" class="set_group" ng-class="{'seperator-right': $first}">
 						<table>
+							<tr>
+								<th>Include</th>
+								<th>Min.</th>
+							</tr>
 							<tr ng-repeat="set in div | orderBy:my_settings.sort_sets_by">
 								<td>
 									<input type="checkbox" ng-model="set.selected"/>
-									{{set.name}} {{$index}}
+									{{set.name}}
 								</td>
 								<td>
 									<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>

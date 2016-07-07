@@ -29,11 +29,21 @@ div#settings_container {
 }
 
 div.settings_group {
-	margin: 0px 30px;
+	margin: 0px 15px;
 }
 
 div.set_group {
 	float:left;
+}
+
+.set_group th {
+	border-bottom: 1px solid white;
+	font-weight:bold;
+	padding-top: 2px;
+}
+
+.seperator-right {
+	margin-right:25px;
 }
 
 div#my_kingdom {
