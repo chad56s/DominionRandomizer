@@ -6,10 +6,6 @@
   font-family: 'IconicStroke', sans-serif;
 }
 
-.iconicstroke-cog {
-	color: #fff;
-}
-
 body {
 	width:100%;
 }
@@ -23,8 +19,20 @@ div#settings_bar {
 	padding: 10px;
 }
 
-div#settings_sets {
+div#settings_container {
+	position:fixed;
+	background-color: #999;
+	z-index:100;
+	padding:20px;
 	font-size: .25em;
+}
+
+div.settings_group {
+	margin: 0px 30px;
+}
+
+div.set_group {
+	float:left;
 }
 
 div#my_kingdom {

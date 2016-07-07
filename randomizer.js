@@ -162,6 +162,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 					s.max = 10;
 				}
 			);
+			$scope.chunkSets();
 			
 			//find the unique sets, construct the initial randomizer deck and collect the kingdom cards
 			angular.forEach($scope.all_cards, function(card, idx) {
@@ -353,4 +354,37 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			$scope.createMyKingdom();
 	}
 	
+	/*
+	*	UTIL functions
+	*/
+	$scope.distribute = function(arr,chunks) {
+		var newArr = [];
+		var size = Math.ceil(arr.length / chunks);
+		for (var i=0; i<arr.length; i+=size) {
+			if(arr.length - i >= size)
+				newArr.push(arr.slice(i, i+size));
+			else
+				newArr.push(arr.slice(i));
+		}
+		return newArr;
+	}
+	
+	$scope.chunkSets = function() {
+		$scope.chunkedSets = $scope.distribute($scope.sets.sort(function(a,b) { 
+			return a[$scope.my_settings.sort_sets_by] > b[$scope.my_settings.sort_sets_by] ? 1 : -1; 
+		}),2);
+		return $scope.chunkedSets;
+	}
+	
 }]);
+
+
+if(typeof(Array.prototype.find) != 'function') {
+	Array.prototype.find = function(callback) {
+		for(var i = 0; i < this.length; i++) {
+			if(callback(this[i]))
+				return this[i];
+		}
+		return null;
+	}
+}

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -15,22 +16,46 @@
 
 	<div id="settings_bar">
 		<span class="iconicstroke-cog" ng-click="show_settings = !show_settings"></span>
-		<div ng-if="show_settings" id="settings_sets">
-			<div>
-				<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_name}}">Name</input>
-				<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_release}}">Release Order</input>
-			</div>
-			<div>
-				<input type="checkbox" ng-repeat-start="set in sets | orderBy:my_settings.sort_sets_by" ng-model="set.selected">{{set.name}}
-				<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
-				<br ng-repeat-end/>
+		<div ng-if="show_settings" id="settings_container">
+			<!--<div id="settings_sets" class="settings_group">
+				<div>
+					<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_name}}">Name</input>
+					<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_release}}">Release Order</input>
+				</div>
+				<div>
+					<input type="checkbox" ng-repeat-start="set in sets | orderBy:my_settings.sort_sets_by" ng-model="set.selected">{{set.name}}
+					<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
+					<br ng-repeat-end/>
+				</div>
+			</div>-->
+			<div id="settings_sets" class="iconicstroke-play">
+				Sets
+				<div class="settings_group">
+					<div>
+						<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_name}}" ng-click="chunkSets()">Name</input>
+						<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_release}}" ng-click="chunkSets()">Release Order</input>
+					</div>
+					<div ng-repeat="div in chunkedSets" class="set_group">
+						<table>
+							<tr ng-repeat="set in div | orderBy:my_settings.sort_sets_by">
+								<td>
+									<input type="checkbox" ng-model="set.selected"/>
+									{{set.name}} {{$index}}
+								</td>
+								<td>
+									<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div id="my_kingdom">
 		<div id="generate_container">
 			<div id="generate">
-				<span class="iconicstroke-play" ng-click="createMyKingdom()"></span>
+				<span class="iconicstroke-curved-arrow" ng-click="createMyKingdom()"></span>
 			</div>
 		</div>
 		<div id="results_container">
