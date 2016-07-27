@@ -1,113 +1,112 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-	div {
-		border: 1px solid blue;
-	}
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-<script src="randomizer.js"></script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="randomizer.js"></script>
+
+	<link  href="css/dom_style_1.css" rel="stylesheet" type="text/css" />
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Dominion Randomizer</title>
 </head>
-<body>
-  <div ng-app="domRdmz" ng-controller="domRdmz_ctrl">
-	<table ng-if="testing_tools">
-		<tr>
-			<th>Total</th>
-			<th>w/Col/Plat</th>
-			<th>w/Shelt</th>
-			<th>w/both</th>
-		</tr>
-		<tr>
-			<td>{{stats.total_created}}</td>
-			<td>{{stats.w_col_plat}}</td>
-			<td>{{stats.w_shelt}}</td>
-			<td>{{stats.w_both}}</td>
-		</tr>
-	</table>
-	
-	<button ng-click="createMyKingdom()">Create</button>
-	
-	<table>
-		<tr>
-			<td>
-						
-				
-				<div ng-if="testing_tools">
-					<button ng-click="createMultiple()">Create Multiple</button>
-					<input type="text" ng-model="how_many"/>
+
+<body ng-app="domRdmz" ng-controller="domRdmz_ctrl">
+
+	<div id="settings_bar">
+		<span class="iconicstroke-cog" ng-click="show_settings = !show_settings"></span>
+		<div ng-if="show_settings" id="settings_container">
+			<!--<div id="settings_sets" class="settings_group">
+				<div>
+					<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_name}}">Name</input>
+					<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_release}}">Release Order</input>
 				</div>
+				<div>
+					<input type="checkbox" ng-repeat-start="set in sets | orderBy:my_settings.sort_sets_by" ng-model="set.selected">{{set.name}}
+					<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
+					<br ng-repeat-end/>
+				</div>
+			</div>-->
+			<div id="settings_sets" class="iconicstroke-play">
+				Sets
+				<div class="settings_group">
+					<div>
+						Sort:
+						<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_name}}" ng-click="chunkSets()">Name</input>
+						<input type="radio" ng-model="my_settings.sort_sets_by" value="{{sort_sets_by_release}}" ng-click="chunkSets()">Release Order</input>
+					</div>
+					<div ng-repeat="div in chunkedSets" class="set_group" ng-class="{'seperator-right': $first}">
+						<table>
+							<tr>
+								<th>Include</th>
+								<th>Min.</th>
+							</tr>
+							<tr ng-repeat="set in div | orderBy:my_settings.sort_sets_by">
+								<td>
+									<input type="checkbox" ng-model="set.selected"/>
+									{{set.name}}
+								</td>
+								<td>
+									<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="my_kingdom">
+		<div id="generate_container">
+			<div id="generate">
+				<span class="iconicstroke-curved-arrow" ng-click="createMyKingdom()"></span>
+			</div>
+		</div>
+		<div id="results_container">
+			<div id="results">
 				<div ng-if="my_kingdom.kingdom_cards.length > 0">
+					<input type="radio" ng-model="my_settings.sort_cards_by" ng-value="{{sort_cards_by_cost}}">Cost</input>
+					<input type="radio" ng-model="my_settings.sort_cards_by" ng-value="{{sort_cards_by_name}}">Name</input>
+					<input type="radio" ng-model="my_settings.sort_cards_by" ng-value="{{sort_cards_by_set}}">Set</input>
+					
 					<p ng-if="my_kingdom.use_col_plat">Use Colony and Platinum</p>
 					<p ng-if="my_kingdom.use_shelters">Use Shelters</p>
 					<p>
 						Kingdom Cards {{my_kingdom.kingdom_cards.length}}:
-						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:['costcoins','costpotions','costdebt','card']">{{card.card}} ({{displayCost(card)}}) ({{card.set}})<span ng-if="card.card=='Young Witch'">Bane:{{my_kingdom.bane.card}}</span></li>
+						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set}})<span ng-if="card.card=='Young Witch'">Bane:{{my_kingdom.bane.card}}</span></li>
 					</p>
 					<p ng-if="my_kingdom.blackmarket.length > 0">
 						Black Market cards:
-						<li ng-repeat="card in my_kingdom.blackmarket">{{card.card}} ({{displayCost(card)}}) ({{card.set}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
+						<li ng-repeat="card in my_kingdom.blackmarket | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
 					</p>
 					<p ng-if="my_kingdom.events.length > 0">
 						Event Cards:
-						<li ng-repeat="card in my_kingdom.events | orderBy:['costcoins','costpotions','costdebt','card']">{{card.card}} ({{displayCost(card)}})</li>
+						<li ng-repeat="card in my_kingdom.events | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}})</li>
 					</p>
 					<p ng-if="my_kingdom.landmarks.length > 0">
 						Landmark Cards:
 						<li ng-repeat="card in my_kingdom.landmarks | orderBy:'card'">{{card.card}}</li>
 					</p>
 				</div>
-			</td>
-			
-			<td>
-				<div>
-					Filters
-					<br/>
-					<input type="checkbox" ng-repeat-start="set in sets | orderBy:'release_order'" ng-model="set.selected">{{set.name}}
-					<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]">
-					</select>
-					<br ng-repeat-end/>
-					
-					
-					<ul>
-						<li>include which sets</li>
-						<li>max number from each set</li>
-						<li>min number from each set</li>
-					</ul>
+			</div>
+		</div>
+		<div id="blackmarket_container" ng-if="my_kingdom.blackmarket.length > 0 || my_kingdom.blackmarket_flop.length > 0">
+			<div id="blackmarket">
+				<button ng-click="flopBlackMarket()">Flop Black Market</button>
+				<div id="blackmarket_flop" ng-if="my_kingdom.blackmarket_flop.length > 0">
+					<li ng-repeat="card in my_kingdom.blackmarket_flop | orderBy:my_settings.sort_cards_by">
+						<button ng-if="!blackmarket_card_picked" ng-click="selectBlackMarket(card)">select</button>
+						<button ng-click="returnBlackMarket(card)">return</button>
+						{{card.card}} ({{displayCost(card)}}) 
+						<span class='card_text'>{{card.rules}}</span>
+					</li>
 				</div>
-			</td>
-			
-			<td>
-				<div>
-					Settings
-					<ul>
-						<li>Sort cards: by name, by cost, by set</li>
-						<li>When sorting by set: name vs. release order</li>
-						<li>Number of cards to draw when checking for colony/plat, shelters</li>
-						<li>Should those cards be replaced every time?</li>
-						<li>HOw many cards in the black market deck?</li>
-						<li>Max number of landmarks, events (and combination thereof)</li>
-					</ul>
-				</div>
-			</td>
-		</tr>
-	</table>
+			</div>
+		</div>
 		
-	<div>
-		Show Randomizers: <input type="checkbox" ng-model="showRandomizers"/>
-		Show Sets: <input type="checkbox" ng-model="showSets"/>
-		<div ng-show="showRandomizers">
-			<li ng-repeat="card in all_cards | filter:filterIsRandomizer | orderBy:'array_index'">{{card.array_index}}. {{card.card}} ({{card.function}}) ({{card.num_times_picked}})</li>
-		</div>
-		<div ng-show="showSets">
-			<li ng-repeat="set in sets | orderBy:set">{{set}}</li>
-		</div>
 	</div>
-  </div>
-  
+
 </body>
+
 </html>
