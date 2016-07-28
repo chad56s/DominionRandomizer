@@ -2746,7 +2746,7 @@
 			"id": 226,
 			"setid": "Em_Lm_4",
 			"function": "Landmark",
-			"card": "Basicilia",
+			"card": "Basilica",
 			"set": "Empires",
 			"type": "Landmark",
 			"rules": "When you buy a card, if you have 2 coins or more left, take 2VP from here.\nSetup: Put 6VP here per player."
@@ -4453,5 +4453,4 @@
 			"rules": "Now and at the start of your next turn: +2 Cards, +1 Buy."
 		}
 	]
-	
 }
