@@ -46,6 +46,10 @@ div.set_group {
 	margin-right:25px;
 }
 
+.bane-card {
+	color: #FF3;
+}
+
 div#my_kingdom {
 	width:100%;
 	color: #fff;
