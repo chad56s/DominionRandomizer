@@ -75,7 +75,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	*	SPECIAL FUNCTIONS for particular cards in the kingdom (young witch, black market)
 	*
 	*/
-	function drawBane(deck) {
+	function addBane(deck) {
 		var isEligibleBane = function(card) { 
 			return	card.function == FUNCTION_KINGDOM &&
 					card.costcoins >=2 && 
@@ -83,7 +83,8 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 					card.costpotions == 0 && 
 					card.costdebt == 0; 
 		};
-		return drawCard(deck,isEligibleBane);
+		$scope.my_kingdom.bane = drawCard(deck,isEligibleBane);
+		$scope.my_kingdom.kingdom_cards.push($scope.my_kingdom.bane);
 	}
 	
 	function createBlackMarket(deck) {
@@ -315,12 +316,13 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			}
 			
 			if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_YOUNG_WITCH))
-				$scope.my_kingdom.bane = drawBane(validRandomizers);
+				addBane(validRandomizers);
 			if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_BLACK_MARKET))
 				createBlackMarket(validRandomizers);
 			//check black market for young witch - I thought it best to do bane first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
 			if($scope.cardInDeck($scope.my_kingdom.blackmarket,CARD_YOUNG_WITCH))
-				$scope.my_kingdom.bane = drawBane(validRandomizers);
+				addBane(validRandomizers);
+				
 			//designate random Action supply pile for the Obelisk
 			if($scope.cardInDeck($scope.my_kingdom.landmarks,CARD_OBELISK))
 				$scope.my_kingdom.obelisk_pile = chooseObelisk();
