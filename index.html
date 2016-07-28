@@ -74,9 +74,9 @@
 					<p ng-if="my_kingdom.use_shelters">Use Shelters</p>
 					<p>
 						Kingdom Cards {{my_kingdom.kingdom_cards.length}}:
-						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:my_settings.sort_cards_by" ng-class="{'bane-card': card==my_kingdom.bane}">
+						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:my_settings.sort_cards_by" ng-class="{'bane-card': card==my_kingdom.bane, 'obelisk-card':card==my_kingdom.obelisk_pile}">
 							{{card.card}} ({{displayCost(card)}}) ({{card.set}})
-								<span ng-if="card.card=='Young Witch'" class='bane-card'> ({{my_kingdom.bane.card}})</span>
+							<span ng-if="card.card=='Young Witch'" class='bane-card'> ({{my_kingdom.bane.card}})</span>
 						</li>
 					</p>
 					<p ng-if="my_kingdom.blackmarket.length > 0">
@@ -89,7 +89,10 @@
 					</p>
 					<p ng-if="my_kingdom.landmarks.length > 0">
 						Landmark Cards:
-						<li ng-repeat="card in my_kingdom.landmarks | orderBy:'card'">{{card.card}}</li>
+						<li ng-repeat="card in my_kingdom.landmarks | orderBy:'card'">
+							{{card.card}}
+							<span ng-if="card.card=='Obelisk'" class='obelisk-card'> ({{my_kingdom.obelisk_pile.card}})</span>
+						</li>
 					</p>
 				</div>
 			</div>

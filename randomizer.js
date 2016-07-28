@@ -9,6 +9,8 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	var FUNCTION_KINGDOM = "Kingdom";
 	var FUNCTION_LANDMARK = "Landmark";
 
+	var TYPE_ACTION = "Action";
+	
 	//SPECIFIC KINGDOM CARDS
 	var CARD_BLACK_MARKET = "Black Market";
 	var CARD_YOUNG_WITCH = "Young Witch";
@@ -47,32 +49,37 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	//drawCard removes random card from deck and returns it
 	//requirements = function that returns true if the picked card fits some criteria
 	function drawCard(deck,requirements) {
+		var index = chooseRandomIndex(deck,requirements);
+		return index > -1 ? deck.splice(index,1)[0] : null;
+	}
+	//selectCard selects a random card from the deck without removing it and returns it
+	//requirements = function that filters the deck down to some criteria
+	function selectCard(deck,requirements) {
+		var index = chooseRandomIndex(deck,requirements);
+		return index > -1 ? deck[index] : null;
+	}
+	//helper function for drawCard and selectCard. Actually does the random selection and returns the index
+	function chooseRandomIndex(deck, requirements) {
 		var index = -1;
-		var card = null;
 		
 		if(requirements) {
 			var matchingIndices = [];
 			deck.forEach(function(card,idx,ar) {
-				if (requirements(card))
+				if(requirements(card))
 					matchingIndices.push(idx);
 			});
-			
 			if(matchingIndices.length > 0)
 				index = matchingIndices[getRandomNumber(0,matchingIndices.length-1)];
 		}
 		else if(deck.length > 0)
 			index = getRandomNumber(0,deck.length - 1);
 		
-		return index > -1 ? deck.splice(index,1)[0] : null;
+		return index;
 	}
-	
-	function remaining_kingdom_cards() {
-		return $scope.kingdom_cards.filter(function(card) { return $scope.my_kingdom.kingdom_cards.indexOf(card) == -1 && $scope.my_kingdom.blackmarket.indexOf(card) == -1 && $scope.bane != card; });
-	}
-	
+		
 	/*
 	*
-	*	SPECIAL FUNCTIONS for particular cards in the kingdom (young witch, black market)
+	*	SPECIAL FUNCTIONS for particular cards in the kingdom (young witch, black market, obelisk)
 	*
 	*/
 	function addBane(deck) {
@@ -87,6 +94,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		$scope.my_kingdom.kingdom_cards.push($scope.my_kingdom.bane);
 	}
 	
+	function chooseObeliskPile() {
+		$scope.my_kingdom.obelisk_pile = chooseRandomKingdomPile($scope.filterActionCards);
+	}
+	
 	function createBlackMarket(deck) {
 		
 		if(deck.filter($scope.filterKingdomCards).length >= 30) {
@@ -96,12 +107,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	}
 	
 	/*
-	*
 	*	choose a RandomKingdomPile. Useful for things like picking a pile for Obelisk (others?)
-	*
 	*/
 	function chooseRandomKingdomPile(requirements) {
-		
+		return selectCard($scope.my_kingdom.kingdom_cards,requirements);
 	}
 	
 	
@@ -190,6 +199,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			angular.forEach($scope.all_cards, function(card, idx) {
 				card.num_times_picked = 0;
 				card.array_index = idx;
+				
+				//turn the type string into an array of types.
+				card.type = card.type.split("-").map(function(val,idx,ar) { return val.trim(); });
+				
 				if($scope.filterIsRandomizer(card))
 					$scope.randomizer_cards.push(card);
 				if(card.function == FUNCTION_KINGDOM)
@@ -202,20 +215,25 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		}
 	);
 	
+	//FILTER: is the card a randomizer (kingdom, event or landmark)
 	$scope.filterIsRandomizer = function(card,index,ar) {
 		return card.function == FUNCTION_KINGDOM || card.function == FUNCTION_EVENT || card.function == FUNCTION_LANDMARK;
 	}
-	
+	//FILTER: is the card in one of the selected sets in the settings
 	$scope.filterCardInSelectedSet = function(card,index,ar) {	
 		return $scope.sets.filter($scope.filterSelectedSets).find(function(s){return s.name == card.set});
 	}
-	
+	//FILTER: is the set selected?
 	$scope.filterSelectedSets = function(set,index,ar) {
 		return set.selected;
 	}
-	
+	//FILTER: is the card a kingdom card?
 	$scope.filterKingdomCards = function(card,index,ar) {
 		return card.function == FUNCTION_KINGDOM;
+	}
+	//FILTER: is the card an action card?
+	$scope.filterActionCards = function(card,index,ar) {
+		return card.type.indexOf(TYPE_ACTION) != -1;
 	}
 	
 	$scope.cardSetSortOrder = function(card) {
@@ -322,10 +340,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			//check black market for young witch - I thought it best to do bane first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
 			if($scope.cardInDeck($scope.my_kingdom.blackmarket,CARD_YOUNG_WITCH))
 				addBane(validRandomizers);
-				
 			//designate random Action supply pile for the Obelisk
 			if($scope.cardInDeck($scope.my_kingdom.landmarks,CARD_OBELISK))
-				$scope.my_kingdom.obelisk_pile = chooseObelisk();
+				chooseObeliskPile();
 			
 			var ucpnum1 = getRandomNumber(0,9);
 			var ucpnum2 = getRandomNumber(0,9);
