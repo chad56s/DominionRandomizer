@@ -2719,7 +2719,7 @@
 			"id": 223,
 			"setid": "Em_Lm_1",
 			"function": "Landmark",
-			"card": "Aquaduct",
+			"card": "Aqueduct",
 			"set": "Empires",
 			"type": "Landmark",
 			"rules": "When you gain a Treasure, move 1VP from its pile to this.\nWhen you gain a Victory card, take the VP from this.\nSetup: Put 8VP on the Silver and Gold piles."
