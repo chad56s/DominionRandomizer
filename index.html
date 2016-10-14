@@ -45,7 +45,7 @@
 							<tr ng-repeat="set in div | orderBy:my_settings.sort_sets_by">
 								<td>
 									<input type="checkbox" ng-model="set.selected"/>
-									{{displaySet(set)}}
+									{{set.name_display}}
 								</td>
 								<td>
 									<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
@@ -75,7 +75,7 @@
 					<p>
 						Kingdom Cards {{my_kingdom.kingdom_cards.length}}:
 						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:my_settings.sort_cards_by" ng-class="{'bane-card': card==my_kingdom.bane, 'obelisk-card':card==my_kingdom.obelisk_pile}">
-							{{card.card}} ({{displayCost(card)}}) ({{card.set}})
+							{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})
 							<span ng-if="card.card=='Young Witch'" class='bane-card'> ({{my_kingdom.bane.card}})</span>
 						</li>
 					</p>

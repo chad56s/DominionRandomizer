@@ -18,7 +18,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	//SPECIFIC LANDMARKS
 	var CARD_OBELISK = "Obelisk";
 	
-	var SORT_SET_BY_NAME = 'name';
+	var SORT_SET_BY_NAME = 'name_display';
 	var SORT_SET_BY_ORDER = 'release_order';
 	
 	var SORT_CARDS_BY_COST = ['costcoins','costpotions','costdebt','card'];
@@ -191,6 +191,8 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 					s.selected = true;
 					s.min = 0;
 					s.max = 10;
+					
+					Object.defineProperty(s,"name_display",{get: function() {return $scope.displaySet(s);}});
 				}
 			);
 			$scope.chunkSets();
@@ -210,6 +212,12 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 					$scope.randomizer_cards.push(card);
 				if(card.function == FUNCTION_KINGDOM)
 					$scope.kingdom_cards.push(card);
+				
+				Object.defineProperty(card,"set_display",{get: function() {
+					var set = $scope.filterCardInSelectedSet(this);
+					return set ? set.name_display : this.set;
+						
+				}});
 			});
 			
 		},
