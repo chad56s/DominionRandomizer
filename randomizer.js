@@ -203,6 +203,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 				//turn the type string into an array of types.
 				card.type = card.type.split("-").map(function(val,idx,ar) { return val.trim(); });
 				
+				//turn the edition into an arry of editions
+				card.edition = card.edition.split(",");
+				
 				if($scope.filterIsRandomizer(card))
 					$scope.randomizer_cards.push(card);
 				if(card.function == FUNCTION_KINGDOM)
@@ -221,7 +224,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	}
 	//FILTER: is the card in one of the selected sets in the settings
 	$scope.filterCardInSelectedSet = function(card,index,ar) {	
-		return $scope.sets.filter($scope.filterSelectedSets).find(function(s){return s.name == card.set});
+		return $scope.sets.filter($scope.filterSelectedSets).find(function(s){return s.name == card.set && card.edition.indexOf(s.edition) != -1});
 	}
 	//FILTER: is the set selected?
 	$scope.filterSelectedSets = function(set,index,ar) {
@@ -256,6 +259,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			cost += " " + card.costdebt + "D";
 		
 		return cost;
+	}
+	
+	$scope.displaySet = function(set) {
+		return set.edition == "1" ? set.name : set.name + " (" + ordinal_suffix_of(set.edition) + " ed.)";
 	}
 	
 	$scope.createMyKingdom = function() {
@@ -429,4 +436,19 @@ if(typeof(Array.prototype.find) != 'function') {
 		}
 		return null;
 	}
+}
+
+function ordinal_suffix_of(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
 }

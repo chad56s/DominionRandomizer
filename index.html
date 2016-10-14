@@ -45,7 +45,7 @@
 							<tr ng-repeat="set in div | orderBy:my_settings.sort_sets_by">
 								<td>
 									<input type="checkbox" ng-model="set.selected"/>
-									{{set.name}}
+									{{displaySet(set)}}
 								</td>
 								<td>
 									<select ng-model="set.min" ng-options="n for n in [0,1,2,3,4,5]"></select>
