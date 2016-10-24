@@ -5027,6 +5027,32 @@
 			"costpotions": "0",
 			"costdebt": "0",
 			"rules": "+2 Cards\n+1 Action\n\nTake a card from your hand and put it anywhere in your deck"
+		},
+		{
+			"id": 387,
+			"setid": "Pm_K_7",
+			"function": "Kingdom",
+			"card": "Sauna",
+			"set": "Promos",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Card\n+1 Action\n\nYou may plan an Avanto from your hand.\nWhile this is in play, when you play a Silver, you may trash a card from your hand."
+		},
+		{
+			"id": 388,
+			"setid": "Pm_Pair_1",
+			"function": "Pair - Sauna",
+			"card": "Avanto",
+			"set": "Promos",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+3 Cards\n\nYou may play a Sauna from your hand."
 		}
 	]
 }
