@@ -4,6 +4,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 
 	var SET_DARK_AGES = "Dark Ages";
 	var SET_PROSPERITY = "Prosperity";
+	var SET_PROMOS = "Promos";
 
 	var FUNCTION_EVENT = "Event";
 	var FUNCTION_KINGDOM = "Kingdom";
@@ -284,7 +285,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		var minTotal = $scope.sets.reduce( function(tot, set){ return tot + parseInt(set.min)}, 0 );
 		
 		$scope.stats.total_created++;
-		
+
+		var maxNumSets = 4; //+ promos
+		var setsSelected = [];
 		
 		if(countKingdomCards >= 10 && minTotal <= 10) {
 			var passedUpDeck = [];
@@ -294,6 +297,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 				if(card.function == FUNCTION_KINGDOM) {
 					$scope.my_kingdom.kingdom_cards.push(card);
 					card.num_times_picked++;
+					//allowing duplicates since it'd also be cool to have kingdoms with only 2 or 3 sets
+					if(card.set != SET_PROMOS)
+						setsSelected.push(card.set)
 				}
 				else if(card.function == FUNCTION_EVENT 
 						&& $scope.my_kingdom.events.length < $scope.my_settings.events.max
@@ -309,6 +315,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 				}
 				else
 					passedUpDeck.push(card);
+
+				if(setsSelected.length == maxNumSets)
+					validRandomizers = validRandomizers.filter(function(card) {return setsSelected.indexOf(card.set) != -1})
 			}
 			//put the passed up cards back into the randomizers
 			validRandomizers = validRandomizers.concat(passedUpDeck);
