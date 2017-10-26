@@ -71,16 +71,18 @@
 					</p>
 					<p ng-if="my_kingdom.blackmarket.length > 0">
 						Black Market cards:
-						<li ng-repeat="card in my_kingdom.blackmarket | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
+						<ol>
+						<li ng-repeat="card in my_kingdom.blackmarket | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
+						</ol>
 					</p>
 					<p ng-if="my_kingdom.events.length > 0">
 						Event Cards:
-						<li ng-repeat="card in my_kingdom.events | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}})</li>
+						<li ng-repeat="card in my_kingdom.events | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
 					</p>
 					<p ng-if="my_kingdom.landmarks.length > 0">
 						Landmark Cards:
 						<li ng-repeat="card in my_kingdom.landmarks | orderBy:'card'">
-							{{card.card}}
+							{{card.card}} ({{card.set_display}})
 							<span ng-if="card.card=='Obelisk'" class='obelisk-card'> ({{my_kingdom.obelisk_pile.card}})</span>
 						</li>
 					</p>
