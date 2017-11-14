@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<title>Cluster Tester</title>
+	
+	<script>
+	
+	var setMins = {
+		"Dominion": 1,
+		"Intrigue": 1,
+		"Seaside": 2,
+		"Alchemy": 3,
+		"Prosperity": 3,
+		"Cornucopia": 3,
+		"Hinterlands": 3,
+		"Dark Ages": 3,
+		"Guilds": 3,
+		"Adventures": 3,
+		"Empires": 3,
+		"Nocturne": 3,
+		"Promos": 1
+	}
+	
+	function getRandomNumber(min,max) {
+		var range = max - min + 1;
+		return Math.floor((Math.random() * range) + min);
+	}
+	
+	var weightedSetInfo = function(cards, min, weightedPicker) {
+		var setCards = cards;
+		var setMin = min;
+		var wp = weightedPicker;	//we need this so we can figure out the normalizer.
+		
+		Object.defineProperties(this, {
+			"cardCount": {
+				get: function() { return setCards.length; }
+			},
+			//this property represents the likelihood that some card x will be part of a minimum draw from its deck
+			"pctSomeCardInMinSet": {
+				get: function() { return 1 - ((this.cardCount - setMin)/this.cardCount); }
+			},
+			//this property attempts to normalize the sets by making sets with high pcts for cards to be picked be less likely that
+			//the set is even picked in the first place.
+			"normalizer": {
+				get: function() { return setMin == 0 ? 0 : Math.round((wp.maxPctSomeCardInMinSet/this.pctSomeCardInMinSet)*1000); }
+			}
+			
+		});
+		
+		this.selectCards = function() { 
+			var cards = [];
+			for(var c = 0; c < setMin; c++) {
+				var p = getRandomNumber(0, this.cardCount-1);
+				cards.push(setCards[p]);
+				setCards.splice(p,1);
+			}
+			return cards;
+		}
+		
+		this.setMin = function(min) { setMin = min; }
+	}
+	
+	var weightedPicker = function(cards) {
+		
+		var weightedSets = {};
+		
+		Object.defineProperties(this, {
+			//this property looks through the weightedSets and finds the one with the maximum chance for some card x to be chosen should the set be selected
+			"maxPctSomeCardInMinSet": {
+				get: function() {
+					var max = 0;
+					for(var set in weightedSets)
+						max = Math.max(max, weightedSets[set].pctSomeCardInMinSet);
+					return max;
+				}
+			},
+			"randMax": {
+				get: function() {
+					var rm = 0;
+					for(var set in weightedSets)
+						rm += weightedSets[set].normalizer;
+					return rm;
+				}
+			}
+		});
+		
+		var sets = cards.sets;
+		//get just the kingdom cards for now and look through those to construct the sets
+		var kingdoms = cards.cards.filter(function(card) {
+			return card.function == "Kingdom" && card.set !="Nocturne";
+		});
+		//TODO: events and landmarks
+		var landvents = cards.cards.filter(function(card) {
+			return card.function == "Landmark" || card.function == "Event";
+		});
+		
+		//construct the set info
+		for(var set = 0; set < sets.length; set++) {
+			var setName = sets[set].name;
+			if(!weightedSets[setName] && setName != "Nocturne") {
+				weightedSets[setName] = new weightedSetInfo(kingdoms.filter(function(card) {
+					return card.set == setName;
+					}), setMins[setName], this);
+			}
+		}
+		weightedSets["LandVents"] = new weightedSetInfo(landvents, 1, this);
+		
+		this.selectCards = function() {
+			var kingdom = [];
+			var landVents = [];
+			var numLandVents = 0;
+			var draws;
+			while(kingdom.length < 10) {
+				var pick = getRandomNumber(1,this.randMax);
+				var set = null;
+				for(set in weightedSets) {
+					pick -= weightedSets[set].normalizer;
+					if(pick <= 0)
+						break;
+				}
+				if(set == "LandVents") {
+					landVents = landVents.concat(weightedSets[set].selectCards());
+					if(++numLandVents == 2)
+						weightedSets[set].setMin(0);
+				}
+				else {
+					draws = weightedSets[set].selectCards();
+					if(kingdom.length + draws.length > 10)
+						draws.splice(0,(kingdom.length + draws.length - 10));
+					kingdom = kingdom.concat(draws);
+					weightedSets[set].setMin(1);
+				}
+				
+			}
+			
+			return kingdom.concat(landVents);
+		}
+		
+		var test = this.randMax;
+		
+	}
+
+	var KingdomBuilder = function(cards) {
+		var kingdoms = cards.cards.filter(function(card) {
+			return card.function == "Kingdom";
+		});
+		
+		for(var c = 0; c < kingdoms.length; c++) {
+			kingdoms[c].timesSelected = 0;
+		}
+	
+		this.largeRun = function(n) {
+			for(var t = 0; t < 10000000; t++) {
+				if(t%1000==0)
+				$("#results").html("runs:" + t);
+				var myPicker = new weightedPicker(cards);
+				var kingdom = myPicker.selectCards();
+				for(var c = 0; c < kingdom.length; c++) {
+					kingdom[c].timesSelected++;
+				}			
+			}
+			
+			string = "";
+			var min = 1000000;
+			var max = 0;
+			for(var c = 0; c < kingdoms.length; c++) {
+				string = string + kingdoms[c].card + ": " + kingdoms[c].timesSelected + "<br/>";
+				min = kingdoms[c].timesSelected > 0 ? Math.min(min,kingdoms[c].timesSelected) : min;
+				max = Math.max(max,kingdoms[c].timesSelected);
+			}
+			string = "Max: " + max + "<br/>Min: " + min + "<br/><br/>" + string;
+			$("#results").html(string);
+		}
+		
+		this.buildKingdom = function() {
+			var myPicker = new weightedPicker(cards);
+			var kingdom = myPicker.selectCards();
+			
+			var string = "<ol>";
+			for(var k = 0; k < kingdom.length; k++)
+				string += "<li>" + kingdom[k].card + "(" + kingdom[k].set + " " + kingdom[k].function + ")";
+			string += "</ol>";
+			$("#results").html(string);
+			
+			return kingdom;
+		}
+	}
+	var myKingdom;
+	
+	$(function() {
+		$.get({
+			"url": "cards.json",
+			"dataType": "json"
+		})
+		.done(function(cards) {
+			
+			myKingdom = new KingdomBuilder(cards);
+			$("#generate").click(myKingdom.buildKingdom);
+			
+		});
+	})
+	
+	var generateKingdom = function() {
+		myKingdom.buildKingdom();
+	}
+	</script>
+</head>
+
+<body>
+
+<div id="results"></div>
+<button id="generate">Generate</button>
+</body>
+
+</html>
