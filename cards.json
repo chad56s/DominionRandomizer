@@ -5073,7 +5073,7 @@
 			"rules": "Trash a card from your hand. If it costs 1$ or more, gain a cheaper card and a Gold."
 		},
 		{
-			"id": "XXX",
+			"id": "390",
 			"setid": "No_Bat",
 			"function": "Bat",
 			"card": "Bat",
@@ -5086,7 +5086,7 @@
 			"rules": "Trash up to 2 cards from your hand. If you trashed at least one, exchange this for a Vampire.\n\n(This is not in the supply)"
 		},
 		{
-			"id": "XXX",
+			"id": "391",
 			"setid": "No_B_1",
 			"function": "Boon",
 			"card": "The Earth's Gift",
@@ -5096,7 +5096,7 @@
 			"rules": "You may discard a Treasure card to gain a card costing up to $4."		
 		},
 		{
-			"id": "XXX",
+			"id": "392",
 			"setid": "No_B_2",
 			"function": "Boon",
 			"card": "The Field's Gift",
@@ -5106,7 +5106,7 @@
 			"rules": "+1 Action\n+$1\n\n(Keep this until Clean-up.)"		
 		},
 		{
-			"id": "XXX",
+			"id": "393",
 			"setid": "No_B_3",
 			"function": "Boon",
 			"card": "The Flame's Gift",
@@ -5116,7 +5116,7 @@
 			"rules": "You may trash a card from your hand."		
 		},
 		{
-			"id": "XXX",
+			"id": "394",
 			"setid": "No_B_4",
 			"function": "Boon",
 			"card": "The Forest's Gift",
@@ -5126,7 +5126,7 @@
 			"rules": "+1 Buy\n+$1\n\n(Keep this until Clean-up.)"		
 		},
 		{
-			"id": "XXX",
+			"id": "395",
 			"setid": "No_B_5",
 			"function": "Boon",
 			"card": "The Moon's Gift",
@@ -5136,7 +5136,7 @@
 			"rules": "Look through your discard pile, you may put a card from it onto your deck."		
 		},
 		{
-			"id": "XXX",
+			"id": "396",
 			"setid": "No_B_6",
 			"function": "Boon",
 			"card": "The Mountain's Gift",
@@ -5146,7 +5146,7 @@
 			"rules": "Gain a Silver."		
 		},
 		{
-			"id": "XXX",
+			"id": "397",
 			"setid": "No_B_7",
 			"function": "Boon",
 			"card": "The River's Gift",
@@ -5156,7 +5156,7 @@
 			"rules": "+1 Card at the end of this turn.\n\n(Keep this until Clean-up.)"		
 		},
 		{
-			"id": "XXX",
+			"id": "398",
 			"setid": "No_B_8",
 			"function": "Boon",
 			"card": "The Sea's Gift",
@@ -5166,7 +5166,7 @@
 			"rules": "+1 Card."		
 		},
 		{
-			"id": "XXX",
+			"id": "399",
 			"setid": "No_B_9",
 			"function": "Boon",
 			"card": "The Sky's Gift",
@@ -5176,7 +5176,7 @@
 			"rules": "You may discard 3 cards to gain a Gold."		
 		},
 		{
-			"id": "XXX",
+			"id": "400",
 			"setid": "No_B_10",
 			"function": "Boon",
 			"card": "The Sun's Gift",
@@ -5186,7 +5186,7 @@
 			"rules": "Look at the top 4 cards of your deck. Discard any number of them and put the rest back in any order."		
 		},
 		{
-			"id": "XXX",
+			"id": "401",
 			"setid": "No_B_11",
 			"function": "Boon",
 			"card": "The Swamp's Gift",
@@ -5196,7 +5196,7 @@
 			"rules": "Gain a Will-O’-Wisp from its pile."		
 		},
 		{
-			"id": "XXX",
+			"id": "402",
 			"setid": "No_B_12",
 			"function": "Boon",
 			"card": "The Wind's Gift",
@@ -5206,8 +5206,8 @@
 			"rules": "+2 Cards. Discard 2 cards."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_Hl_X",
+			"id": "403",
+			"setid": "No_Hl_1",
 			"function": "Heirloom",
 			"card": "Cursed Gold",
 			"set": "Nocturne",
@@ -5219,8 +5219,8 @@
 			"rules": "Worth $3\n\nWhen you play this, gain a Curse."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_Hl_X",
+			"id": "404",
+			"setid": "No_Hl_2",
 			"function": "Heirloom",
 			"card": "Goat",
 			"set": "Nocturne",
@@ -5232,8 +5232,8 @@
 			"rules": "Worth $1\n\nWhen you play this, you may trash a card from your hand."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_Hl_X",
+			"id": "405",
+			"setid": "No_Hl_3",
 			"function": "Heirloom",
 			"card": "Haunted Mirror",
 			"set": "Nocturne",
@@ -5245,8 +5245,8 @@
 			"rules": "Worth $1\n\nWhen you trash this, you may discard an Action card, to gain a Ghost from its pile."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_Hl_X",
+			"id": "406",
+			"setid": "No_Hl_4",
 			"function": "Heirloom",
 			"card": "Lucky Coin",
 			"set": "Nocturne",
@@ -5258,8 +5258,21 @@
 			"rules": "Worth $1\n\nWhen you play this, gain a Silver."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_Hl_X",
+			"id": "407",
+			"setid": "No_Hl_5",
+			"function": "Heirloom",
+			"card": "Magic Lamp",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Treasure - Heirloom",
+			"costcoins": "0",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "Worth $1\n\nWhen you play this, if there are at least 6 cards that you have exactly 1 copy of in play, trash this. If you do, gain 3 Wishes from their pile."		
+		},
+		{
+			"id": "408",
+			"setid": "No_Hl_6",
 			"function": "Heirloom",
 			"card": "Pasture",
 			"set": "Nocturne",
@@ -5271,7 +5284,20 @@
 			"rules": " Worth $1\n\nWorth 1VP per Estate you have."		
 		},
 		{
-			"id": "XXX",
+			"id": "409",
+			"setid": "No_Hl_7",
+			"function": "Heirloom",
+			"card": "Pouch",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Treasure - Heirloom",
+			"costcoins": "2",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "Worth $1\n+1 Buy"		
+		},
+		{
+			"id": "410",
 			"setid": "No_Hx_1",
 			"function": "Hex",
 			"card": "Bad Omens",
@@ -5281,7 +5307,7 @@
 			"rules": "Put your deck into your discard pile. Look through it and put 2 Coppers from it onto your deck (or reveal you can't)."		
 		},
 		{
-			"id": "XXX",
+			"id": "411",
 			"setid": "No_Hx_2",
 			"function": "Hex",
 			"card": "Delusion",
@@ -5291,7 +5317,7 @@
 			"rules": "If you don't have Deluded or Envious, take Deluded."		
 		},
 		{
-			"id": "XXX",
+			"id": "412",
 			"setid": "No_Hx_3",
 			"function": "Hex",
 			"card": "Envy",
@@ -5301,7 +5327,7 @@
 			"rules": "If you don't have Deluded or Envious, take Envious."		
 		},
 		{
-			"id": "XXX",
+			"id": "413",
 			"setid": "No_Hx_4",
 			"function": "Hex",
 			"card": "Famine",
@@ -5311,7 +5337,7 @@
 			"rules": "Reveal the top 3 cards of your deck. Discard the Actions. Shuffle the rest into your deck."		
 		},
 		{
-			"id": "XXX",
+			"id": "414",
 			"setid": "No_Hx_5",
 			"function": "Hex",
 			"card": "Fear",
@@ -5321,7 +5347,7 @@
 			"rules": "If you have at least 5 cards in hand, discard an Action or Treasure (or reveal you can't)."		
 		},
 		{
-			"id": "XXX",
+			"id": "415",
 			"setid": "No_Hx_6",
 			"function": "Hex",
 			"card": "Greed",
@@ -5331,7 +5357,7 @@
 			"rules": "Gain a Copper onto your deck."		
 		},
 		{
-			"id": "XXX",
+			"id": "416",
 			"setid": "No_Hx_7",
 			"function": "Hex",
 			"card": "Haunting",
@@ -5341,7 +5367,7 @@
 			"rules": "If you have at least 4 cards in hand, put one of them onto your deck."		
 		},
 		{
-			"id": "XXX",
+			"id": "417",
 			"setid": "No_Hx_8",
 			"function": "Hex",
 			"card": "Locusts",
@@ -5351,7 +5377,7 @@
 			"rules": "Trash the top card of your deck. If it's a Copper or Estate, gain a Curse. Otherwise, gain a cheaper card that shares a type with it."		
 		},
 		{
-			"id": "XXX",
+			"id": "418",
 			"setid": "No_Hx_9",
 			"function": "Hex",
 			"card": "Misery",
@@ -5361,7 +5387,7 @@
 			"rules": "If this is your first Misery this game, take Miserable. Otherwise, flip it over to Twice Miserable."		
 		},
 		{
-			"id": "XXX",
+			"id": "419",
 			"setid": "No_Hx_10",
 			"function": "Hex",
 			"card": "Plague",
@@ -5371,7 +5397,7 @@
 			"rules": "Gain a Curse to your hand."		
 		},
 		{
-			"id": "XXX",
+			"id": "420",
 			"setid": "No_Hx_11",
 			"function": "Hex",
 			"card": "Poverty",
@@ -5381,7 +5407,7 @@
 			"rules": "Discard down to 3 cards in hand."		
 		},
 		{
-			"id": "XXX",
+			"id": "421",
 			"setid": "No_Hx_12",
 			"function": "Hex",
 			"card": "War",
@@ -5391,8 +5417,21 @@
 			"rules": "Reveal cards from your deck until you reveal one costing 3 or 4. Trash it and discard the rest."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "422",
+			"setid": "No_K_1",
+			"function": "Kingdom",
+			"card": "Bard",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Action - Fate",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+2 Coins\n\nReceive a Boon."
+		},
+		{
+			"id": "423",
+			"setid": "No_K_2",
 			"function": "Kingdom",
 			"card": "Blessed Village",
 			"set": "Nocturne",
@@ -5404,8 +5443,21 @@
 			"rules": "+1 Card\n+1 Action\n\nWhen you gain this, take a Boon. Receive it now or at the start of your next turn."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "424",
+			"setid": "No_K_3",
+			"function": "Kingdom",
+			"card": "Changeling",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Night",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "Trash this. Gain a copy of a card you have in play.\n\nIn games using this, when you gain a card costing 3 or more, you may exchange it for a Changeling."
+		},
+		{
+			"id": "425",
+			"setid": "No_K_4",
 			"function": "Kingdom",
 			"card": "Cemetery",
 			"set": "Nocturne",
@@ -5418,8 +5470,34 @@
 			"heirloom": "Haunted Mirror"
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "426",
+			"setid": "No_K_5",
+			"function": "Kingdom",
+			"card": "Cobbler",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Night - Duration",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your next turn, gain a card to your hand costing up to 4."
+		},
+		{
+			"id": "427",
+			"setid": "No_K_6",
+			"function": "Kingdom",
+			"card": "Conclave",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+2 coins\n\nYou may play an action card from your hand that you don't have a copy of in play. If you do, +1 Action."
+		},
+		{
+			"id": "428",
+			"setid": "No_K_7",
 			"function": "Kingdom",
 			"card": "Crypt",
 			"set": "Nocturne",
@@ -5431,8 +5509,8 @@
 			"rules": "Set aside any number of Treasures you have in play (under this). While any remain, at the start of each of your turns, put one of them into your hand."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "429",
+			"setid": "No_K_8",
 			"function": "Kingdom",
 			"card": "Cursed Village",
 			"set": "Nocturne",
@@ -5444,8 +5522,21 @@
 			"rules": "+2 Actions\n\nDraw until you have 6 cards in hand.\n\nWhen you gain this, receive a Hex."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "430",
+			"setid": "No_K_9",
+			"function": "Kingdom",
+			"card": "Den of Sin",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Night - Duration",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your next turn: +2 cards.\n\nThis is gained to your hand (instead of your discard pile)."
+		},
+		{
+			"id": "431",
+			"setid": "No_K_10",
 			"function": "Kingdom",
 			"card": "Devil's Workshop",
 			"set": "Nocturne",
@@ -5457,8 +5548,8 @@
 			"rules": "If the number of cards you gained this turn is:\n2+, gain an Imp from its pile;\n1, gain a card costing up to $4;\n0 gain a Gold."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "432",
+			"setid": "No_K_11",
 			"function": "Kingdom",
 			"card": "Druid",
 			"set": "Nocturne",
@@ -5470,8 +5561,8 @@
 			"rules": "+1 Buy\n\nReceive one of the set aside, Boons, leaving it there.\n\nSetup: Set aside the top 3 Boons, face-up."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "433",
+			"setid": "No_K_12",
 			"function": "Kingdom",
 			"card": "Exorcist",
 			"set": "Nocturne",
@@ -5483,8 +5574,8 @@
 			"rules": "Trash a card from your hand. Gain a cheaper Spirit from one of the Spirit piles."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "434",
+			"setid": "No_K_13",
 			"function": "Kingdom",
 			"card": "Faithful Hound",
 			"set": "Nocturne",
@@ -5496,8 +5587,8 @@
 			"rules": "+2 Cards\n\nWhen you discard this other than during Clean-up, you may set it aside, and put it into your hand at end of turn."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "435",
+			"setid": "No_K_14",
 			"function": "Kingdom",
 			"card": "Fool",
 			"set": "Nocturne",
@@ -5510,8 +5601,8 @@
 			"heirloom": "Lucky Coin"
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "436",
+			"setid": "No_K_15",
 			"function": "Kingdom",
 			"card": "Ghost Town",
 			"set": "Nocturne",
@@ -5523,8 +5614,21 @@
 			"rules": "At the start of your next turn, +1 Card and +1 Action.\n\nThis is gained to your hand (instead of your discard pile)."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "437",
+			"setid": "No_K_16",
+			"function": "Kingdom",
+			"card": "Guardian",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Night - Duration",
+			"costcoins": "2",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "Until your next turn, when another player plays an Attack card, it doesn't affect you. At the start of your next turn, +1 Coin.\n\nThis is gained to your hand (instead of your discard pile)."
+		},
+		{
+			"id": "438",
+			"setid": "No_K_17",
 			"function": "Kingdom",
 			"card": "Idol",
 			"set": "Nocturne",
@@ -5536,8 +5640,8 @@
 			"rules": "When you play this, if you then have an odd number of Idols in play, receive a Boon; if an even number, each other player gains a Curse."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "439",
+			"setid": "No_K_18",
 			"function": "Kingdom",
 			"card": "Leprechaun",
 			"set": "Nocturne",
@@ -5549,8 +5653,21 @@
 			"rules": "Gain a Gold. If you have exactly 7 cards in play, gain a Wish from its pile. Otherwise, receive a Hex."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "440",
+			"setid": "No_K_19",
+			"function": "Kingdom",
+			"card": "Monastery",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Night",
+			"costcoins": "2",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "For each card you've gained this turn, you may trash a card from your hand or a Copper you have in play."
+		},
+		{
+			"id": "441",
+			"setid": "No_K_20",
 			"function": "Kingdom",
 			"card": "Necromancer",
 			"set": "Nocturne",
@@ -5562,8 +5679,21 @@
 			"rules": "Play a face up, non-Duration Action card from the trash, leaving it there and turning it face down for the turn.\n\nSetup: Put the 3 Zombies into the trash."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "442",
+			"setid": "No_K_21",
+			"function": "Kingdom",
+			"card": "Night Watchman",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Night",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "Look at the top 5 cards of your deck, discard any number, and put the rest back in any order.\n\nThis is gained to your hand (instead of your discard pile)."
+		},
+		{
+			"id": "443",
+			"setid": "No_K_22",
 			"function": "Kingdom",
 			"card": "Pixie",
 			"set": "Nocturne",
@@ -5576,8 +5706,8 @@
 			"heirloom": "Goat"
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "444",
+			"setid": "No_K_23",
 			"function": "Kingdom",
 			"card": "Pooka",
 			"set": "Nocturne",
@@ -5590,8 +5720,8 @@
 			"heirloom": "Cursed Gold"
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "445",
+			"setid": "No_K_24",
 			"function": "Kingdom",
 			"card": "Raider",
 			"set": "Nocturne",
@@ -5603,8 +5733,35 @@
 			"rules": "Each other player with 5 or more cards in hand discards a copy of a card you have in play (or reveals they can’t).\nAt the start of your next turn, +$3"
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "446",
+			"setid": "No_K_25",
+			"function": "Kingdom",
+			"card": "Sacred Grove",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Action - Fate",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Buy\n+3 Coins\n\nReceive a Boon. If it doesn't give +1 Coin, each other player may receive it."
+		},
+		{
+			"id": "447",
+			"setid": "No_K_26",
+			"function": "Kingdom",
+			"card": "Secret Cave",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Action - Duration",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Card\n+1 Action\n\nYou may discard 3 cards. If you did, then at the start of your next turn, +3 coins.",
+			"heirloom": "Magic Lamp"
+		},
+		{
+			"id": "448",
+			"setid": "No_K_27",
 			"function": "Kingdom",
 			"card": "Shepherd",
 			"set": "Nocturne",
@@ -5617,8 +5774,8 @@
 			"heirloom": "Pasture"
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "449",
+			"setid": "No_K_28",
 			"function": "Kingdom",
 			"card": "Skulk",
 			"set": "Nocturne",
@@ -5630,8 +5787,48 @@
 			"rules": "+1 Buy\n\nEach other player receives the next Hex.\n\nWhen you gain this, gain a Gold."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "450",
+			"setid": "No_K_29",
+			"function": "Kingdom",
+			"card": "Tormentor",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Action - Attack - Doom",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+2 Coins\n\nIf you have no other cards in play, gain an Imp from its pile. Otherwise, each player receives the next Hex."
+		},
+		{
+			"id": "451",
+			"setid": "No_K_30",
+			"function": "Kingdom",
+			"card": "Tragic Hero",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+3 Cards\n+1 Buy\n\nIf you have 8 or more cards in hand (after drawing), trash this and gain a Treasure."
+		},
+		{
+			"id": "452",
+			"setid": "No_K_31",
+			"function": "Kingdom",
+			"card": "Tracker",
+			"set": "Nocturne",
+			"edition": "1",
+			"type": "Action - Fate",
+			"costcoins": "2",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Coin\n\nReceive a Boon.\n\nWhile this is in play, when you gain a card, you may put that card onto your deck.",
+			"heirloom": "Pouch"
+		},
+		{
+			"id": "453",
+			"setid": "No_K_32",
 			"function": "Kingdom",
 			"card": "Vampire",
 			"set": "Nocturne",
@@ -5643,8 +5840,8 @@
 			"rules": "Each other player receives the next Hex. Gain a card costing up to 5 other than a Vampire. Exchange this for a Bat."
 		},
 		{
-			"id": "XXX",
-			"setid": "No_K_X",
+			"id": "454",
+			"setid": "No_K_33",
 			"function": "Kingdom",
 			"card": "Werewolf",
 			"set": "Nocturne",
@@ -5656,7 +5853,7 @@
 			"rules": "If it's your Night phase, each other player receives the next Hex. Otherwise, +3 Cards."
 		},
 		{
-			"id": "XXX",
+			"id": "455",
 			"setid": "No_Sp_1",
 			"function": "Spirit",
 			"card": "Ghost",
@@ -5669,7 +5866,7 @@
 			"rules": "Reveal cards from your deck until you reveal an Action. Discard the other cards and set aside the Action. At the start of your next turn, play it twice.(This is not in the Supply.)"		
 		},
 		{
-			"id": "XXX",
+			"id": "456",
 			"setid": "No_Sp_2",
 			"function": "Spirit",
 			"card": "Imp",
@@ -5682,7 +5879,7 @@
 			"rules": "+2 Cards\n\nYou may play an Action card from your hand that you don’t have a copy of in play.(This is not in the supply)."		
 		},
 		{
-			"id": "XXX",
+			"id": "457",
 			"setid": "No_Sp_3",
 			"function": "Spirit",
 			"card": "Will-O'-Wisp",
@@ -5695,8 +5892,8 @@
 			"rules": "+1 Card\n+1 Action\n\nReveal the top card of your deck. If it costs $2 or less, put it into your hand.\n\n(This is not in the Supply.)"		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_St_X",
+			"id": "458",
+			"setid": "No_St_1",
 			"function": "State",
 			"card": "Deluded",
 			"set": "Nocturne",
@@ -5705,8 +5902,8 @@
 			"rules": "At the start of your Buy phase, return this, and you can't buy Actions this turn."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_St_X",
+			"id": "459",
+			"setid": "No_St_2",
 			"function": "State",
 			"card": "Envious",
 			"set": "Nocturne",
@@ -5715,8 +5912,8 @@
 			"rules": "At the start of your Buy phase, return this, and Silver and Gold make 1 this turn."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_St_X",
+			"id": "460",
+			"setid": "No_St_3",
 			"function": "State",
 			"card": "Lost in the Woods",
 			"set": "Nocturne",
@@ -5725,8 +5922,8 @@
 			"rules": "At the start of your turn, you may discard a card to receive a Boon."		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_St_X",
+			"id": "461",
+			"setid": "No_St_4",
 			"function": "State",
 			"card": "Miserable",
 			"set": "Nocturne",
@@ -5735,8 +5932,8 @@
 			"rules": "-2 VP"		
 		},
 		{
-			"id": "XXX",
-			"setid": "No_St_X",
+			"id": "462",
+			"setid": "No_St_5",
 			"function": "State",
 			"card": "Twice Miserable",
 			"set": "Nocturne",
@@ -5745,7 +5942,7 @@
 			"rules": "-4 VP"		
 		},
 		{
-			"id": "XXX",
+			"id": "463",
 			"setid": "No_Wish",
 			"function": "Wish",
 			"card": "Wish",
@@ -5758,7 +5955,7 @@
 			"rules": "+1 Action\n\nReturn this to its pile. If you did, gain a card costing up to 6.\n\n(This is not in the Supply.)"		
 		},
 		{
-			"id": "XXX",
+			"id": "464",
 			"setid": "No_Z_1",
 			"function": "Zombie",
 			"card": "Zombie Apprentice",
@@ -5771,7 +5968,7 @@
 			"rules": "You may trash an Action card from your hand for +3 Cards and +1 Action."
 		},
 		{
-			"id": "XXX",
+			"id": "465",
 			"setid": "No_Z_2",
 			"function": "Zombie",
 			"card": "Zombie Mason",
@@ -5784,7 +5981,7 @@
 			"rules": "Trash the top card of your deck. You may gain a card costing up to 1 more than it."
 		},
 		{
-			"id": "XXX",
+			"id": "466",
 			"setid": "No_Z_3",
 			"function": "Zombie",
 			"card": "Zombie Spy",
