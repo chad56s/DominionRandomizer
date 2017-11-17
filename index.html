@@ -15,8 +15,8 @@
 <body ng-app="domRdmz" ng-controller="domRdmz_ctrl">
 
 	<div id="settings_bar">
-		<span class="iconicstroke-cog" ng-click="show_settings = !show_settings"></span>
-		<div ng-if="show_settings" id="settings_container">
+		<span class="iconicstroke-cog" ng-click="model.show_settings = !model.show_settings"></span>
+		<div ng-if="model.show_settings" id="settings_container" ng-mouseover="model.show_settings = true" ng-mouseleave="model.show_settings = false">
 			
 			<div id="settings_sets" class="iconicstroke-play">
 				Sets
