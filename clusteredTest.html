@@ -30,7 +30,7 @@
 	
 	var weightedSetInfo = function(cards, min, weightedPicker) {
 		var setCards = cards;
-		var setMin = min;
+		var minPicked = min;
 		var wp = weightedPicker;	//we need this so we can figure out the normalizer.
 		
 		Object.defineProperties(this, {
@@ -39,19 +39,23 @@
 			},
 			//this property represents the likelihood that some card x will be part of a minimum draw from its deck
 			"pctSomeCardInMinSet": {
-				get: function() { return 1 - ((this.cardCount - setMin)/this.cardCount); }
+				get: function() { return 1 - ((this.cardCount - this.enforcedMin)/this.cardCount); }
 			},
 			//this property attempts to normalize the sets by making sets with high pcts for cards to be picked be less likely that
 			//the set is even picked in the first place.
 			"normalizer": {
-				get: function() { return setMin == 0 ? 0 : Math.round((wp.maxPctSomeCardInMinSet/this.pctSomeCardInMinSet)*1000); }
+				get: function() { return minPicked.enforcedMin == 0 ? 0 : Math.round((wp.maxPctSomeCardInMinSet/this.pctSomeCardInMinSet)*1000); }
+			},
+			
+			"enforcedMin": {
+				get: function() { return Math.min(minPicked, wp.artificialMax); }
 			}
 			
 		});
 		
 		this.selectCards = function() { 
 			var cards = [];
-			for(var c = 0; c < setMin; c++) {
+			for(var c = 0; c < this.enforcedMin; c++) {
 				var p = getRandomNumber(0, this.cardCount-1);
 				cards.push(setCards[p]);
 				setCards.splice(p,1);
@@ -59,12 +63,13 @@
 			return cards;
 		}
 		
-		this.setMin = function(min) { setMin = min; }
+		this.setMin = function(min) { minPicked = min; }
 	}
 	
 	var weightedPicker = function(cards) {
 		
 		var weightedSets = {};
+		var _artificialMax = 100;
 		
 		Object.defineProperties(this, {
 			//this property looks through the weightedSets and finds the one with the maximum chance for some card x to be chosen should the set be selected
@@ -83,13 +88,16 @@
 						rm += weightedSets[set].normalizer;
 					return rm;
 				}
+			},
+			"artificialMax": {
+				get: function() { return _artificialMax; }
 			}
 		});
 		
 		var sets = cards.sets;
 		//get just the kingdom cards for now and look through those to construct the sets
 		var kingdoms = cards.cards.filter(function(card) {
-			return card.function == "Kingdom" && card.set !="Nocturne";
+			return card.function == "Kingdom";
 		});
 		//TODO: events and landmarks
 		var landvents = cards.cards.filter(function(card) {
@@ -99,7 +107,7 @@
 		//construct the set info
 		for(var set = 0; set < sets.length; set++) {
 			var setName = sets[set].name;
-			if(!weightedSets[setName] && setName != "Nocturne") {
+			if(!weightedSets[setName]) {
 				weightedSets[setName] = new weightedSetInfo(kingdoms.filter(function(card) {
 					return card.set == setName;
 					}), setMins[setName], this);
@@ -112,7 +120,9 @@
 			var landVents = [];
 			var numLandVents = 0;
 			var draws;
+			
 			while(kingdom.length < 10) {
+				_artificialMax = 10 - kingdom.length;
 				var pick = getRandomNumber(1,this.randMax);
 				var set = null;
 				for(set in weightedSets) {
@@ -143,18 +153,16 @@
 	}
 
 	var KingdomBuilder = function(cards) {
-		var kingdoms = cards.cards.filter(function(card) {
-			return card.function == "Kingdom";
+		var randomizers = cards.cards.filter(function(card) {
+			return card.function == "Kingdom" || card.function == "Landmark" || card.function == "Event";
 		});
 		
-		for(var c = 0; c < kingdoms.length; c++) {
-			kingdoms[c].timesSelected = 0;
+		for(var c = 0; c < randomizers.length; c++) {
+			randomizers[c].timesSelected = 0;
 		}
 	
 		this.largeRun = function(n) {
-			for(var t = 0; t < 10000000; t++) {
-				if(t%1000==0)
-				$("#results").html("runs:" + t);
+			for(var t = 0; t < n; t++) {
 				var myPicker = new weightedPicker(cards);
 				var kingdom = myPicker.selectCards();
 				for(var c = 0; c < kingdom.length; c++) {
@@ -162,15 +170,25 @@
 				}			
 			}
 			
-			string = "";
-			var min = 1000000;
+			var kingdomString = "";
+			var landventString = "";
+			var string;
+			var min = n;
 			var max = 0;
-			for(var c = 0; c < kingdoms.length; c++) {
-				string = string + kingdoms[c].card + ": " + kingdoms[c].timesSelected + "<br/>";
-				min = kingdoms[c].timesSelected > 0 ? Math.min(min,kingdoms[c].timesSelected) : min;
-				max = Math.max(max,kingdoms[c].timesSelected);
+			for(var c = 0; c < randomizers.length; c++) {
+				string = randomizers[c].function == "Kingdom" ? kingdomString : landventString;
+				
+				string = string + randomizers[c].card + ": " + randomizers[c].timesSelected + "<br/>";
+				
+				if(randomizers[c].function == "Kingdom") {
+					kingdomString = string;					
+					min = randomizers[c].timesSelected > 0 ? Math.min(min,randomizers[c].timesSelected) : min;
+					max = Math.max(max,randomizers[c].timesSelected);
+				}
+				else
+					landventString = string;
 			}
-			string = "Max: " + max + "<br/>Min: " + min + "<br/><br/>" + string;
+			string = "Max: " + max + "<br/>Min: " + min + "<br/><br/>" + kingdomString + "<br/><br/>" + landventString;
 			$("#results").html(string);
 		}
 		
@@ -198,20 +216,25 @@
 			
 			myKingdom = new KingdomBuilder(cards);
 			$("#generate").click(myKingdom.buildKingdom);
-			
+			$("#doRuns").click(function() {myKingdom.largeRun($("#runs").val());});
 		});
 	})
 	
 	var generateKingdom = function() {
 		myKingdom.buildKingdom();
 	}
+	
+	var doTestRun = function(v) {
+		myKingdom.largeRun(v);
+	}
 	</script>
 </head>
 
 <body>
 
+<button id="generate">Generate</button><br/>
+<input id="runs"/><button id="doRuns">Run Tests</button>
 <div id="results"></div>
-<button id="generate">Generate</button>
 </body>
 
 </html>
