@@ -44,7 +44,7 @@
 			//this property attempts to normalize the sets by making sets with high pcts for cards to be picked be less likely that
 			//the set is even picked in the first place.
 			"normalizer": {
-				get: function() { return minPicked.enforcedMin == 0 ? 0 : Math.round((wp.maxPctSomeCardInMinSet/this.pctSomeCardInMinSet)*1000); }
+				get: function() { return this.enforcedMin == 0 ? 0 : Math.round((wp.maxPctSomeCardInMinSet/this.pctSomeCardInMinSet)*1000); }
 			},
 			
 			"enforcedMin": {
