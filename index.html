@@ -4,6 +4,7 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 	<script src="randomizer.js"></script>
+	<script src="weightedSets.js"></script>
 
 	<link  href="css/dom_style_1.css" rel="stylesheet" type="text/css" />
 	
@@ -15,8 +16,8 @@
 <body ng-app="domRdmz" ng-controller="domRdmz_ctrl">
 
 	<div id="settings_bar">
-		<span class="iconicstroke-cog" ng-click="model.show_settings = !model.show_settings"></span>
-		<div ng-if="model.show_settings" id="settings_container" ng-mouseover="model.show_settings = true" ng-mouseleave="model.show_settings = false">
+		<span class="iconicstroke-cog" ng-click="changeSettingsShow()"></span>
+		<div ng-show="show_settings" id="settings_container" ng-mouseover="revealSettings(true)" ng-mouseleave="revealSettings(false)">
 			
 			<div id="settings_sets" class="iconicstroke-play">
 				Sets
@@ -50,7 +51,7 @@
 	<div id="my_kingdom">
 		<div id="generate_container">
 			<div id="generate">
-				<span class="iconicstroke-curved-arrow" ng-click="createMyKingdom()"></span>
+				<span class="iconicstroke-curved-arrow" ng-click="createMyWeightedKingdom()"></span>
 			</div>
 		</div>
 		<div id="results_container">

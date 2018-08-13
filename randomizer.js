@@ -129,6 +129,24 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	};
 	
 	$scope.show_settings = false;
+	var settingsTimeout = 0;
+	$scope.changeSettingsShow = function() {
+		$scope.show_settings = !$scope.show_settings;
+	}
+	$scope.revealSettings = function(show) {
+		if(show) {
+            if(settingsTimeout > 0) clearTimeout(settingsTimeout);
+			$scope.show_settings = true;
+		}
+		else {
+            settingsTimeout = setTimeout(function() {
+            	$scope.show_settings = false;
+            	settingsTimeout = 0;
+			}, 1000);
+		}
+	}
+
+
 	$scope.testing_tools = false;
 	
 	$scope.all_cards = [];
@@ -182,6 +200,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		url: 'cards.json'
 	}).then(
 		function successCallback(response){
+			$scope.all_data = response.data;
 			$scope.all_cards = response.data.cards;
 			$scope.sets = response.data.sets;
 			
@@ -242,6 +261,14 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.filterKingdomCards = function(card,index,ar) {
 		return card.function == FUNCTION_KINGDOM;
 	}
+    //FILTER: is the card a landmark card?
+    $scope.filterLandmarkCards = function(card,index,ar) {
+        return card.function == FUNCTION_LANDMARK;
+    }
+    //FILTER: is the card a kingdom card?
+    $scope.filterEventCards = function(card,index,ar) {
+        return card.function == FUNCTION_EVENT;
+    }
 	//FILTER: is the card an action card?
 	$scope.filterActionCards = function(card,index,ar) {
 		return card.type.indexOf(TYPE_ACTION) != -1;
@@ -272,7 +299,51 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.displaySet = function(set) {
 		return set.edition == "1" ? set.name : set.name + " (" + ordinal_suffix_of(set.edition) + " ed.)";
 	}
-	
+
+	$scope.createMyWeightedKingdom = function() {
+
+        resetMyKingdom();
+
+		var validRandomizers = $scope.randomizer_cards.filter($scope.filterCardInSelectedSet)
+		var myWeightedPicker = new weightedPicker($scope.all_data, $scope.filterCardInSelectedSet);
+
+        var kingdom = myWeightedPicker.selectCards();
+
+        $scope.my_kingdom.kingdom_cards = kingdom.filter($scope.filterKingdomCards);
+        $scope.my_kingdom.landmarks = kingdom.filter($scope.filterLandmarkCards);
+        $scope.my_kingdom.events = kingdom.filter($scope.filterEventCards);
+
+        // narrow down the valid randomizers to just kingdom cards (take the landmarks and events out) and
+		// remove the cards we've already selected so that we don't pick them again for things like Young Witch and Obelisk
+        var validRandomizers = (validRandomizers.filter($scope.filterKingdomCards)).filter(function(randomizer_card) {
+        	return !$scope.my_kingdom.kingdom_cards.find(function(kingdom_card){ return randomizer_card == kingdom_card; });
+		});
+
+        if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_YOUNG_WITCH))
+            addBane(validRandomizers);
+        if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_BLACK_MARKET))
+            createBlackMarket(validRandomizers);
+        //check black market for young witch - I thought it best to do bane first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
+        if($scope.cardInDeck($scope.my_kingdom.blackmarket,CARD_YOUNG_WITCH))
+            addBane(validRandomizers);
+        //designate random Action supply pile for the Obelisk
+        if($scope.cardInDeck($scope.my_kingdom.landmarks,CARD_OBELISK))
+            chooseObeliskPile();
+
+        var ucpnum1 = getRandomNumber(0,9);
+        var ucpnum2 = getRandomNumber(0,9);
+        var usnum1 = getRandomNumber(0,9);
+        var usnum2 = getRandomNumber(0,9);
+        $scope.my_kingdom.use_col_plat = $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY || $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY;
+        $scope.my_kingdom.use_shelters = $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES || $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES;
+
+        if($scope.my_kingdom.use_col_plat) $scope.stats.w_col_plat++;
+        if($scope.my_kingdom.use_shelters) $scope.stats.w_shelt++;
+        if($scope.my_kingdom.use_shelters && $scope.my_kingdom.use_col_plat) $scope.stats.w_both++;
+
+	}
+
+
 	$scope.createMyKingdom = function() {
 		
 		resetMyKingdom();
@@ -408,7 +479,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	
 	$scope.createMultiple = function() {
 		for(var i = 0; i < $scope.how_many; i++)
-			$scope.createMyKingdom();
+			$scope.createMyWeightedKingdom();
 	}
 	
 	/*
@@ -432,7 +503,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		}),2);
 		return $scope.chunkedSets;
 	}
-	
+
 }]);
 
 
