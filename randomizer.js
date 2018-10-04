@@ -327,7 +327,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
     var kingdom = myWeightedPicker.selectCards();
 
     $scope.my_kingdom.kingdom_cards = kingdom.filter($scope.filterKingdomCards);
-    $scopr.my_kingdom.otherRandomizers = kingdom.filter($scope.filterOtherRandomizerCards);
+    $scope.my_kingdom.otherRandomizers = kingdom.filter($scope.filterOtherRandomizerCards);
 
     // narrow down the valid randomizers to just kingdom cards (take the OTHER_RANDOMIZERS out) and
     // remove the cards we've already selected so that we don't pick them again for things like Young Witch and Obelisk

@@ -12,6 +12,7 @@ var setMins = {
     "Adventures": 3,
     "Empires": 3,
     "Nocturne": 3,
+    "Renaissance": 4,
     "Promos": 1
 }
 
@@ -108,9 +109,8 @@ var weightedPicker = function(cards, filterKingdom) {
         return card.function == "Kingdom";
     });
 
-    //TODO: events and landmarks
-    var landvents = allCards.filter(function(card) {
-        return card.function == "Landmark" || card.function == "Event";
+    var otherRandomizers = allCards.filter(function(card) {
+        return card.function == "OtherRandomizer";
     });
 
     //construct the set info
@@ -122,12 +122,12 @@ var weightedPicker = function(cards, filterKingdom) {
             }), setMins[setName], this);
         }
     }
-    weightedSets["LandVents"] = new weightedSetInfo(landvents, 1, this);
+    weightedSets["OtherRandomizers"] = new weightedSetInfo(otherRandomizers, 1, this);
 
     this.selectCards = function() {
         var kingdom = [];
-        var landVents = [];
-        var numLandVents = 0;
+        var otherRandomizers = [];
+        var numOtherRandomizers = 0;
         var draws;
 
         while(kingdom.length < 10) {
@@ -139,9 +139,9 @@ var weightedPicker = function(cards, filterKingdom) {
                 if(pick <= 0)
                     break;
             }
-            if(set == "LandVents") {
-                landVents = landVents.concat(weightedSets[set].selectCards());
-                if(++numLandVents == 2)
+            if(set == "OtherRandomizers") {
+                otherRandomizers = otherRandomizers.concat(weightedSets[set].selectCards());
+                if(++numOtherRandomizers == 2)
                     weightedSets[set].setMin(0);
             }
             else {
@@ -154,7 +154,7 @@ var weightedPicker = function(cards, filterKingdom) {
 
         }
 
-        return kingdom.concat(landVents);
+        return kingdom.concat(otherRandomizers);
     }
 
     var test = this.randMax;
