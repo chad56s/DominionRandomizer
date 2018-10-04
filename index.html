@@ -51,7 +51,7 @@
 	<div id="my_kingdom">
 		<div id="generate_container">
 			<div id="generate">
-				<span class="iconicstroke-curved-arrow" ng-click="createMyWeightedKingdom()"></span>
+				<span class="iconicstroke-curved-arrow" ng-click="createMyKingdom()"></span>
 			</div>
 		</div>
 		<div id="results_container">
@@ -77,16 +77,20 @@
 						<li ng-repeat="card in my_kingdom.blackmarket | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
 						</ol>
 					</p>
-					<p ng-if="my_kingdom.events.length > 0">
-						Event Cards:
-						<li ng-repeat="card in my_kingdom.events | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
+					<p ng-if="my_kingdom.otherRandomizers.filter(filterEventCards).length > 0">
+						Events:
+						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterEventCards | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
 					</p>
-					<p ng-if="my_kingdom.landmarks.length > 0">
-						Landmark Cards:
-						<li ng-repeat="card in my_kingdom.landmarks | orderBy:'card'">
+					<p ng-if="my_kingdom.otherRandomizers.filter(filterLandmarkCards).length > 0">
+						Landmarks:
+						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterLandmarkCards | orderBy:'card'">
 							{{card.card}} ({{card.set_display}})
 							<span ng-if="card.card=='Obelisk'" class='obelisk-card'> ({{my_kingdom.obelisk_pile.card}})</span>
 						</li>
+					</p>
+					<p ng-if="my_kingdom.otherRandomizers.filter(filterProjectCards).length > 0">
+						Projects:
+						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterProjectCards | orderBy:'card'">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
 					</p>
 				</div>
 			</div>
