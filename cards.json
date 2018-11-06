@@ -4866,7 +4866,7 @@
 			"costcoins": "6",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "Gain a card to your hand costing up to $5. Put a card from your hand onto your deck"
+			"rules": "Gain a card to your hand costing up to 5 Coins. Put a card from your hand onto your deck"
 		},
 		{
 			"id": 374,
@@ -4905,7 +4905,7 @@
 			"costcoins": "3",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "+1 Card\n+1 Action\n\nThe first time you play a Silver this turn, +$1."
+			"rules": "+1 Card\n+1 Action\n\nThe first time you play a Silver this turn, +1 Coin."
 		},
 		{
 			"id": 377,
@@ -4918,7 +4918,7 @@
 			"costcoins": "4",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "+1 Card\n+1 Action\n+$1\n\nDiscard a card per empty Supply pile."
+			"rules": "+1 Card\n+1 Action\n+1 Coin\n\nDiscard a card per empty Supply pile."
 		},
 		{
 			"id": 378,
@@ -4944,7 +4944,7 @@
 			"costcoins": "3",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "+$2\n\nDiscard the top card of your deck. If it is an Action card, you may play it."
+			"rules": "+2 Coins\n\nDiscard the top card of your deck. If it is an Action card, you may play it."
 		},
 		{
 			"id": 380,
@@ -4957,7 +4957,7 @@
 			"costcoins": "5",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "Reveal a card from your hand. For each type it has (Action, Attack, etc.), choose one: \n\n+1 Action; \nor +1 Buy; \nor +$3; \nor gain a Gold. \n\nThe choices must be different."
+			"rules": "Reveal a card from your hand. For each type it has (Action, Attack, etc.), choose one: \n\n+1 Action; \nor +1 Buy; \nor +3 Coins; \nor gain a Gold. \n\nThe choices must be different."
 		},
 		{
 			"id": 381,
@@ -4996,7 +4996,7 @@
 			"costcoins": "4",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "+1 Card\n+1 Action\n\nYou may discard 2 cards, for +$2.\n\nWorth 1 VP"
+			"rules": "+1 Card\n+1 Action\n\nYou may discard 2 cards, for +2 Coins.\n\nWorth 1 VP"
 		},
 		{
 			"id": 384,
@@ -5022,7 +5022,7 @@
 			"costcoins": "5",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "Trash a card from your hand. Gain a card costing up to $2 more than it. If the gained card is an Action or Treasure, put it onto your deck; if it's a Victory card, each other player gains a Curse"
+			"rules": "Trash a card from your hand. Gain a card costing up to 2 Coins more than it. If the gained card is an Action or Treasure, put it onto your deck; if it's a Victory card, each other player gains a Curse"
 		},
 		{
 			"id": 386,
@@ -5074,7 +5074,7 @@
 			"costcoins": "4",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "Trash a card from your hand. If it costs 1$ or more, gain a cheaper card and a Gold."
+			"rules": "Trash a card from your hand. If it costs 1 Coin or more, gain a cheaper card and a Gold."
 		},
 		{
 			"id": "390",
@@ -5097,7 +5097,7 @@
 			"set": "Nocturne",
 			"edition": "1",
 			"type": "Boon",
-			"rules": "You may discard a Treasure card to gain a card costing up to $4."		
+			"rules": "You may discard a Treasure card to gain a card costing up to 4 Coins."		
 		},
 		{
 			"id": "392",
@@ -5107,7 +5107,7 @@
 			"set": "Nocturne",
 			"edition": "1",
 			"type": "Boon",
-			"rules": "+1 Action\n+$1\n\n(Keep this until Clean-up.)"		
+			"rules": "+1 Action\n+1 Coin\n\n(Keep this until Clean-up.)"		
 		},
 		{
 			"id": "393",
@@ -5127,7 +5127,7 @@
 			"set": "Nocturne",
 			"edition": "1",
 			"type": "Boon",
-			"rules": "+1 Buy\n+$1\n\n(Keep this until Clean-up.)"		
+			"rules": "+1 Buy\n+1 Coin\n\n(Keep this until Clean-up.)"		
 		},
 		{
 			"id": "395",
@@ -5999,7 +5999,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_A_yy",
+			"setid": "Re_A_1",
 			"function": "Artifact",
 			"card": "Flag",
 			"set": "Renaissance",
@@ -6009,7 +6009,17 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_A_yy",
+			"setid": "Re_A_2",
+			"function": "Artifact",
+			"card": "Horn",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Artifact",
+			"rules": "Once per turn, when you discard a Border Guard from play, you may put it onto your deck."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_A_3",
 			"function": "Artifact",
 			"card": "Key",
 			"set": "Renaissance",
@@ -6019,7 +6029,17 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_A_yy",
+			"setid": "Re_A_4",
+			"function": "Artifact",
+			"card": "Lantern",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Artifact",
+			"rules": "Your Border Guards reveal 3 cards and discard 2. (It takes all 3 being Actions to take the Horn.)"
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_A_5",
 			"function": "Artifact",
 			"card": "Treasure Chest",
 			"set": "Renaissance",
@@ -6029,7 +6049,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_1",
 			"function": "Kingdom",
 			"card": "Acting Troupe",
 			"set": "Renaissance",
@@ -6042,7 +6062,34 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_2",
+			"function": "Kingdom",
+			"card": "Border Guard",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "2",
+			"costpotions": "0",
+			"costdebt": "0",
+      "artifact": "Horn - Lantern",
+			"rules": "+1 Action\n\nReveal the top 2 cards of your deck. Put one into your hand and discard the other. If both were Actions, take the Lantern or Horn."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_3",
+			"function": "Kingdom",
+			"card": "Cargo Ship",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action - Duration",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+2 Coins\n\nOnce this turn, when you gain a card, you may set it aside face up (on this). At the start of your next turn, put it into your hand."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_4",
 			"function": "Kingdom",
 			"card": "Ducat",
 			"set": "Renaissance",
@@ -6055,7 +6102,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_5",
 			"function": "Kingdom",
 			"card": "Experiment",
 			"set": "Renaissance",
@@ -6068,7 +6115,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_6",
 			"function": "Kingdom",
 			"card": "Flag Bearer",
 			"set": "Renaissance",
@@ -6082,7 +6129,59 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_7",
+			"function": "Kingdom",
+			"card": "Hideout",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Card\n+2 Actions\n\nTrash a card from your hand. If it's a Victory card, gain a Curse."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_8",
+			"function": "Kingdom",
+			"card": "Improve",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+2 Coins\n\nAt the start of Clean-up, you may trash an Action card you would discard from play this turn, to gain a card costing exactly 1 Coin more than it."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_9",
+			"function": "Kingdom",
+			"card": "Inventor",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "Gain a card costing up to $4, then cards cost $1 less this turn (but not less than $0)."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_10",
+			"function": "Kingdom",
+			"card": "Lackeys",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "2",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+2 Cards\n\nWhen you gain this, +2 Villagers."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_11",
 			"function": "Kingdom",
 			"card": "Mountain Village",
 			"set": "Renaissance",
@@ -6095,7 +6194,33 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_12",
+			"function": "Kingdom",
+			"card": "Old Witch",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action - Attack",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+3 Cards\n\nEach other player gains a Curse and may trash a Curse from their hand."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_13",
+			"function": "Kingdom",
+			"card": "Patron",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action - Reaction",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Villager\n+$2\n\nWhen something causes you to reveal this (using the word \"reveal\"), +1 Coffers."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_14",
 			"function": "Kingdom",
 			"card": "Priest",
 			"set": "Renaissance",
@@ -6108,7 +6233,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_15",
 			"function": "Kingdom",
 			"card": "Recruiter",
 			"set": "Renaissance",
@@ -6121,7 +6246,33 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_16",
+			"function": "Kingdom",
+			"card": "Research",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action - Duration",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Action\n\nTrash a card from your hand. Per $1 it costs, set aside a card from your deck face down (on this). At the start of your next turn, put those cards into your hand."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_17",
+			"function": "Kingdom",
+			"card": "Scepter",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Treasure",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "When you play this, choose one: +$2; or replay an Action card you played this turn that's still in play."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_18",
 			"function": "Kingdom",
 			"card": "Scholar",
 			"set": "Renaissance",
@@ -6134,7 +6285,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_19",
 			"function": "Kingdom",
 			"card": "Sculptor",
 			"set": "Renaissance",
@@ -6147,7 +6298,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_20",
 			"function": "Kingdom",
 			"card": "Seer",
 			"set": "Renaissance",
@@ -6160,7 +6311,33 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_21",
+			"function": "Kingdom",
+			"card": "Silk Merchant",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Action",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+2 Cards\n+1Buy\n\nWhen you gain or trash this, +1 Coffers and +1 Villager."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_22",
+			"function": "Kingdom",
+			"card": "Spices",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Treasure",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "$2\n+1 Buy\n\nWhen you gain this, +2 Coffers."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_K_23",
 			"function": "Kingdom",
 			"card": "Swashbuckler",
 			"set": "Renaissance",
@@ -6174,20 +6351,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
-			"function": "Kingdom",
-			"card": "Silk Merchant",
-			"set": "Renaissance",
-			"edition": "1",
-			"type": "Action",
-			"costcoins": "4",
-			"costpotions": "0",
-			"costdebt": "0",
-			"rules": "+2 Cards\n+1Buy\n\nWhen you gain or trash this, +1 Coffers and +1 Villager."
-		},
-    {
-			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_24",
 			"function": "Kingdom",
 			"card": "Treasurer",
 			"set": "Renaissance",
@@ -6201,7 +6365,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_K_yy",
+			"setid": "Re_K_25",
 			"function": "Kingdom",
 			"card": "Villain",
 			"set": "Renaissance",
@@ -6214,7 +6378,72 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_P_yy",
+			"setid": "Re_P_1",
+			"function": "OtherRandomizer",
+			"card": "Academy",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "When you gain an Action card, +1 Villager."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_2",
+			"function": "OtherRandomizer",
+			"card": "Barracks",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "6",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your turn, +1 Action."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_3",
+			"function": "OtherRandomizer",
+			"card": "Canal",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "7",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "During your turns, Cards cost $1 less, but not less than $0."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_4",
+			"function": "OtherRandomizer",
+			"card": "Capitalism",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "During your turns, Actions with +$ amounts in their text are also Treasures."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_5",
+			"function": "OtherRandomizer",
+			"card": "Cathedral",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your turn, trash a card from your hand."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_6",
 			"function": "OtherRandomizer",
 			"card": "Citadel",
 			"set": "Renaissance",
@@ -6227,7 +6456,46 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_P_yy",
+			"setid": "Re_P_7",
+			"function": "OtherRandomizer",
+			"card": "City Gate",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your turn, +1 Card, then put a card from your hand onto your deck."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_8",
+			"function": "OtherRandomizer",
+			"card": "Crop Rotation",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "6",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your turn, you may discard a Victory card for +2 Cards."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_9",
+			"function": "OtherRandomizer",
+			"card": "Exploration",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the end of your Buy phase, if you didn't buy any cards, +1 Coffers and +1 Villager."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_10",
 			"function": "OtherRandomizer",
 			"card": "Fair",
 			"set": "Renaissance",
@@ -6240,7 +6508,33 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_P_yy",
+			"setid": "Re_P_11",
+			"function": "OtherRandomizer",
+			"card": "Fleet",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "After the game ends, there's an extra round of turns just for players with this."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_12",
+			"function": "OtherRandomizer",
+			"card": "Guildhall",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "When you gain a Treasure, +1 Coffers."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_13",
 			"function": "OtherRandomizer",
 			"card": "Innovation",
 			"set": "Renaissance",
@@ -6253,7 +6547,46 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_P_yy",
+			"setid": "Re_P_14",
+			"function": "OtherRandomizer",
+			"card": "Pageant",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the end of your Buy phase, you may pay $1 for +1 Coffers."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_15",
+			"function": "OtherRandomizer",
+			"card": "Piazza",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your turn, reveal the top card of your deck. If it's an Action, play it."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_16",
+			"function": "OtherRandomizer",
+			"card": "Road Network",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "5",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "When another player gains a Victory card, +1 Card."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_17",
 			"function": "OtherRandomizer",
 			"card": "Sewers",
 			"set": "Renaissance",
@@ -6266,7 +6599,7 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_P_yy",
+			"setid": "Re_P_18",
 			"function": "OtherRandomizer",
 			"card": "Silos",
 			"set": "Renaissance",
@@ -6279,7 +6612,20 @@
 		},
     {
 			"id": "xxx",
-			"setid": "Re_P_yy",
+			"setid": "Re_P_19",
+			"function": "OtherRandomizer",
+			"card": "Sinister Plot",
+			"set": "Renaissance",
+			"edition": "1",
+			"type": "Project",
+			"costcoins": "4",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "At the start of your turn, add a token here, or remove your tokens here for +1 Card each."
+		},
+    {
+			"id": "xxx",
+			"setid": "Re_P_20",
 			"function": "OtherRandomizer",
 			"card": "Star Chart",
 			"set": "Renaissance",
