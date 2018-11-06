@@ -29,6 +29,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	var SORT_CARDS_BY_COST = ['costcoins','costpotions','costdebt','card'];
 	var SORT_CARDS_BY_NAME = "['card']";
 	var SORT_CARDS_BY_SET = "[cardSetSortOrder,'card']";
+  var SORT_CARDS_BY_DRAWN = "[]";
 	
 	function resetMyKingdom() {	
 
@@ -185,24 +186,15 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		"sort_cards_by_set": {
 			value: SORT_CARDS_BY_SET,
 			writable:false
-		}
+		},
+    "sort_cards_by_drawn": {
+      value: SORT_CARDS_BY_DRAWN,
+      writable:false
+    }
 	});
-	
-	
-	$scope.my_settings = {
-		events: {min: 0, max: 2},
-		landmarks: {min: 0, max: 2},
-    projects: {min: 0, max: 2},
-		otherRandomizersTotal: {min: 0, max: 2},
-		sort_sets_by: SORT_SET_BY_ORDER,
-		sort_cards_by: SORT_CARDS_BY_COST
-	};
 	
 	$scope.sets = [];
 	$scope.chosen_sets = {};
-	
-	
-	
 	
 	$http({
 		method: 'GET',
@@ -290,7 +282,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.filterActionCards = function(card,index,ar) {
 		return cardIsType(card,TYPE_ACTION) && $scope.filterKingdomCards(card,index,ar);
 	}
-	
+		
 	$scope.cardSetSortOrder = function(card) {
 		return $scope.sets.find(function(s) { return s.name == card.set})[$scope.my_settings.sort_sets_by];
 	}
@@ -317,6 +309,15 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		return set.edition == "1" ? set.name : set.name + " (" + ordinal_suffix_of(set.edition) + " ed.)";
 	}
 
+	$scope.my_settings = {
+		events: {min: 0, max: 2},
+		landmarks: {min: 0, max: 2},
+    projects: {min: 0, max: 2},
+		otherRandomizersTotal: {min: 0, max: 2},
+		sort_sets_by: SORT_SET_BY_ORDER,
+		sort_cards_by: [$scope.cardSetSortOrder,'card']
+	};
+  
 	$scope.createMyWeightedKingdom = function() {
 
     resetMyKingdom();
