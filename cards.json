@@ -379,7 +379,7 @@
 			"costcoins": "5",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "Each other player takes his -1 Coin token. Now and at the start of your next turn:\n+1 BuyWhile this is in play, cards cost 1 Coin less on your turns, but not less than 0 Coins."
+			"rules": "Each other player takes his -1 Coin token. Now and at the start of your next turn:\n+1 Buy\nWhile this is in play, cards cost 1 Coin less on your turns, but not less than 0 Coins."
 		},
 		{
 			"id": 24,
@@ -6229,7 +6229,7 @@
 			"costcoins": "4",
 			"costpotions": "0",
 			"costdebt": "0",
-			"rules": "+2 Coins\n\nTrash a card from your hand. For the rest of your turn, when you crash a card, +2 Coins."
+			"rules": "+2 Coins\n\nTrash a card from your hand. For the rest of your turn, when you trash a card, +2 Coins."
 		},
     {
 			"id": "xxx",

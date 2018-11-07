@@ -67,7 +67,7 @@
 					<p ng-if="my_kingdom.use_shelters">Use Shelters</p>
 					<p>
 						Kingdom Cards {{my_kingdom.kingdom_cards.length}}:
-						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:my_settings.sort_cards_by" ng-class="{'bane-card': card==my_kingdom.bane, 'obelisk-card':card==my_kingdom.obelisk_pile}">
+						<li ng-repeat="card in my_kingdom.kingdom_cards | orderBy:my_settings.sort_cards_by" ng-class="{'bane-card': card==my_kingdom.bane, 'obelisk-card':card==my_kingdom.obelisk_pile}" title="{{card.rules}}">
 							{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})
 							<span ng-if="card.card=='Young Witch'" class='bane-card'> ({{my_kingdom.bane.card}})</span>
 						</li>
@@ -75,23 +75,23 @@
 					<p ng-if="my_kingdom.blackmarket.length > 0">
 						Black Market cards:
 						<ol>
-						<li ng-repeat="card in my_kingdom.blackmarket | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
+						<li ng-repeat="card in my_kingdom.blackmarket | orderBy:my_settings.sort_cards_by" title="{{card.rules}}">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})<span ng-if="card.card=='Young Witch'"><br/>&nbsp;Bane:{{my_kingdom.bane.card}}</span></li>
 						</ol>
 					</p>
 					<p ng-if="my_kingdom.otherRandomizers.filter(filterEventCards).length > 0">
 						Events:
-						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterEventCards | orderBy:my_settings.sort_cards_by">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
+						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterEventCards | orderBy:my_settings.sort_cards_by" title="{{card.rules}}">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
 					</p>
 					<p ng-if="my_kingdom.otherRandomizers.filter(filterLandmarkCards).length > 0">
 						Landmarks:
-						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterLandmarkCards | orderBy:'card'">
+						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterLandmarkCards | orderBy:'card'" title="{{card.rules}}">
 							{{card.card}} ({{card.set_display}})
 							<span ng-if="card.card=='Obelisk'" class='obelisk-card'> ({{my_kingdom.obelisk_pile.card}})</span>
 						</li>
 					</p>
 					<p ng-if="my_kingdom.otherRandomizers.filter(filterProjectCards).length > 0">
 						Projects:
-						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterProjectCards | orderBy:'card'">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
+						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterProjectCards | orderBy:'card'" title="{{card.rules}}">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
 					</p>
 				</div>
 			</div>
