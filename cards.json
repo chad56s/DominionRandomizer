@@ -6636,6 +6636,32 @@
 			"costpotions": "0",
 			"costdebt": "0",
 			"rules": "When you shuffle, you may pick one of the cards to go on top."
+		},
+		{
+			"id": "517",
+			"setid": "Pm_K_9",
+			"function": "Kingdom",
+			"card": "Captain",
+			"set": "Promos",
+			"edition": "1",
+			"type": "Action - Duration",
+			"costcoins": "6",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "Now and at the start of your next turn: Play a non-Duration Action card from the Supply costing up to 4, leaving it there."
+		},
+		{
+			"id": "518",
+			"setid": "Pm_K_10",
+			"function": "Kingdom",
+			"card": "Church",
+			"set": "Promos",
+			"edition": "1",
+			"type": "Action - Duration",
+			"costcoins": "3",
+			"costpotions": "0",
+			"costdebt": "0",
+			"rules": "+1 Action\n\nSet aside up to 3 cards from your hand face down. At the start of your next turn, put them into your hand, then you may trash a card from your hand."
 		}
 	]
 }
