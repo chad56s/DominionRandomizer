@@ -70,10 +70,11 @@
 			"release_order": 14,
 			"edition": "1"
 		},
-    { "name": "Renaissance",
-      "release_order": 15,
-      "edition": "1"
-    },
+		{ 
+			"name": "Renaissance",
+			"release_order": 15,
+			"edition": "1"
+		},
 		{
 			"name": "Promos",
 			"release_order": 99,
@@ -5997,8 +5998,8 @@
 			"costdebt": "0",
 			"rules": "+1 Card\n+1 Action\n\nLook at the top card of your deck. Discard it or put it back."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "467",
 			"setid": "Re_A_1",
 			"function": "Artifact",
 			"card": "Flag",
@@ -6007,8 +6008,8 @@
 			"type": "Artifact",
 			"rules": "When drawing your hand, +1 Card."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "468",
 			"setid": "Re_A_2",
 			"function": "Artifact",
 			"card": "Horn",
@@ -6017,8 +6018,8 @@
 			"type": "Artifact",
 			"rules": "Once per turn, when you discard a Border Guard from play, you may put it onto your deck."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "469",
 			"setid": "Re_A_3",
 			"function": "Artifact",
 			"card": "Key",
@@ -6027,8 +6028,8 @@
 			"type": "Artifact",
 			"rules": "At the start of your turn, +1 Coin."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "470",
 			"setid": "Re_A_4",
 			"function": "Artifact",
 			"card": "Lantern",
@@ -6037,8 +6038,8 @@
 			"type": "Artifact",
 			"rules": "Your Border Guards reveal 3 cards and discard 2. (It takes all 3 being Actions to take the Horn.)"
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "471",
 			"setid": "Re_A_5",
 			"function": "Artifact",
 			"card": "Treasure Chest",
@@ -6047,8 +6048,8 @@
 			"type": "Artifact",
 			"rules": "At the start of your Buy phase, gain a Gold."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "472",
 			"setid": "Re_K_1",
 			"function": "Kingdom",
 			"card": "Acting Troupe",
@@ -6060,8 +6061,8 @@
 			"costdebt": "0",
 			"rules": "+4 Villages\n\nTrash this."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "473",
 			"setid": "Re_K_2",
 			"function": "Kingdom",
 			"card": "Border Guard",
@@ -6074,8 +6075,8 @@
       "artifact": "Horn - Lantern",
 			"rules": "+1 Action\n\nReveal the top 2 cards of your deck. Put one into your hand and discard the other. If both were Actions, take the Lantern or Horn."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "474",
 			"setid": "Re_K_3",
 			"function": "Kingdom",
 			"card": "Cargo Ship",
@@ -6087,8 +6088,8 @@
 			"costdebt": "0",
 			"rules": "+2 Coins\n\nOnce this turn, when you gain a card, you may set it aside face up (on this). At the start of your next turn, put it into your hand."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "475",
 			"setid": "Re_K_4",
 			"function": "Kingdom",
 			"card": "Ducat",
@@ -6100,8 +6101,8 @@
 			"costdebt": "0",
 			"rules": "+1 Coffers\n+1Buy\n\nWhen you gain this, you may trash a Copper from your hand."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "476",
 			"setid": "Re_K_5",
 			"function": "Kingdom",
 			"card": "Experiment",
@@ -6113,8 +6114,8 @@
 			"costdebt": "0",
 			"rules": "+2 Cards\n+1 Action\nReturn this to the Supply.\n\nWhen you gain this, gain another Experiment (which doesn't come with another)."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "477",
 			"setid": "Re_K_6",
 			"function": "Kingdom",
 			"card": "Flag Bearer",
@@ -6127,8 +6128,8 @@
       "artifact": "Flag",
 			"rules": "+2 Coins\n\nWhen you gain or trash this, take the Flag."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "478",
 			"setid": "Re_K_7",
 			"function": "Kingdom",
 			"card": "Hideout",
@@ -6140,8 +6141,8 @@
 			"costdebt": "0",
 			"rules": "+1 Card\n+2 Actions\n\nTrash a card from your hand. If it's a Victory card, gain a Curse."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "479",
 			"setid": "Re_K_8",
 			"function": "Kingdom",
 			"card": "Improve",
@@ -6153,8 +6154,8 @@
 			"costdebt": "0",
 			"rules": "+2 Coins\n\nAt the start of Clean-up, you may trash an Action card you would discard from play this turn, to gain a card costing exactly 1 Coin more than it."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "480",
 			"setid": "Re_K_9",
 			"function": "Kingdom",
 			"card": "Inventor",
@@ -6166,8 +6167,8 @@
 			"costdebt": "0",
 			"rules": "Gain a card costing up to $4, then cards cost $1 less this turn (but not less than $0)."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "481",
 			"setid": "Re_K_10",
 			"function": "Kingdom",
 			"card": "Lackeys",
@@ -6179,8 +6180,8 @@
 			"costdebt": "0",
 			"rules": "+2 Cards\n\nWhen you gain this, +2 Villagers."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "482",
 			"setid": "Re_K_11",
 			"function": "Kingdom",
 			"card": "Mountain Village",
@@ -6192,8 +6193,8 @@
 			"costdebt": "0",
 			"rules": "+2 Actions\n\nLook through your discard pile and put a card from it into your hand. If you can't, +1 Card."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "483",
 			"setid": "Re_K_12",
 			"function": "Kingdom",
 			"card": "Old Witch",
@@ -6205,8 +6206,8 @@
 			"costdebt": "0",
 			"rules": "+3 Cards\n\nEach other player gains a Curse and may trash a Curse from their hand."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "484",
 			"setid": "Re_K_13",
 			"function": "Kingdom",
 			"card": "Patron",
@@ -6218,8 +6219,8 @@
 			"costdebt": "0",
 			"rules": "+1 Villager\n+$2\n\nWhen something causes you to reveal this (using the word \"reveal\"), +1 Coffers."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "485",
 			"setid": "Re_K_14",
 			"function": "Kingdom",
 			"card": "Priest",
@@ -6231,8 +6232,8 @@
 			"costdebt": "0",
 			"rules": "+2 Coins\n\nTrash a card from your hand. For the rest of your turn, when you trash a card, +2 Coins."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "486",
 			"setid": "Re_K_15",
 			"function": "Kingdom",
 			"card": "Recruiter",
@@ -6244,8 +6245,8 @@
 			"costdebt": "0",
 			"rules": "+2 Cards\n\nTrash a card from your hand. +1 Villager per 1 Coin it costs."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "487",
 			"setid": "Re_K_16",
 			"function": "Kingdom",
 			"card": "Research",
@@ -6257,8 +6258,8 @@
 			"costdebt": "0",
 			"rules": "+1 Action\n\nTrash a card from your hand. Per $1 it costs, set aside a card from your deck face down (on this). At the start of your next turn, put those cards into your hand."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "488",
 			"setid": "Re_K_17",
 			"function": "Kingdom",
 			"card": "Scepter",
@@ -6270,8 +6271,8 @@
 			"costdebt": "0",
 			"rules": "When you play this, choose one: +$2; or replay an Action card you played this turn that's still in play."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "489",
 			"setid": "Re_K_18",
 			"function": "Kingdom",
 			"card": "Scholar",
@@ -6283,8 +6284,8 @@
 			"costdebt": "0",
 			"rules": "Discard your hand. +7 Cards."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "490",
 			"setid": "Re_K_19",
 			"function": "Kingdom",
 			"card": "Sculptor",
@@ -6296,8 +6297,8 @@
 			"costdebt": "0",
 			"rules": "Gain a card to your hand costing up to 4. If it's a Treasure, +1 Villager."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "491",
 			"setid": "Re_K_20",
 			"function": "Kingdom",
 			"card": "Seer",
@@ -6309,8 +6310,8 @@
 			"costdebt": "0",
 			"rules": "+1 Card\n+1 Action\n\nReveal the top 3 cards of your deck. Put the ones costing from 2 to 4 into your hand. Put the rest back in any order."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "492",
 			"setid": "Re_K_21",
 			"function": "Kingdom",
 			"card": "Silk Merchant",
@@ -6322,8 +6323,8 @@
 			"costdebt": "0",
 			"rules": "+2 Cards\n+1Buy\n\nWhen you gain or trash this, +1 Coffers and +1 Villager."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "493",
 			"setid": "Re_K_22",
 			"function": "Kingdom",
 			"card": "Spices",
@@ -6335,8 +6336,8 @@
 			"costdebt": "0",
 			"rules": "$2\n+1 Buy\n\nWhen you gain this, +2 Coffers."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "494",
 			"setid": "Re_K_23",
 			"function": "Kingdom",
 			"card": "Swashbuckler",
@@ -6346,11 +6347,11 @@
 			"costcoins": "5",
 			"costpotions": "0",
 			"costdebt": "0",
-      "artifact": "Treasure Chest",
+			"artifact": "Treasure Chest",
 			"rules": "+3 Cards\n\nIf your discard pile has any cards in it: +1 Coffers, then if you have at least 4 Coffers tokens, take the Treasure Chest."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "495",
 			"setid": "Re_K_24",
 			"function": "Kingdom",
 			"card": "Treasurer",
@@ -6360,11 +6361,11 @@
 			"costcoins": "5",
 			"costpotions": "0",
 			"costdebt": "0",
-      "artifact": "Key",
+			"artifact": "Key",
 			"rules": "+3 Coins\n\nChoose one: Trash a Treasure from your hand; or gain a Treasure from the Trash to your hand; or take the Key."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "496",
 			"setid": "Re_K_25",
 			"function": "Kingdom",
 			"card": "Villain",
@@ -6376,8 +6377,8 @@
 			"costdebt": "0",
 			"rules": "+2 Coffers\n\nEach other player with 5 or more cards in hand discards one costing 2 or more (or reveals they can't)."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "497",
 			"setid": "Re_P_1",
 			"function": "OtherRandomizer",
 			"card": "Academy",
@@ -6389,8 +6390,8 @@
 			"costdebt": "0",
 			"rules": "When you gain an Action card, +1 Villager."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "498",
 			"setid": "Re_P_2",
 			"function": "OtherRandomizer",
 			"card": "Barracks",
@@ -6402,8 +6403,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, +1 Action."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "499",
 			"setid": "Re_P_3",
 			"function": "OtherRandomizer",
 			"card": "Canal",
@@ -6415,8 +6416,8 @@
 			"costdebt": "0",
 			"rules": "During your turns, Cards cost $1 less, but not less than $0."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "500",
 			"setid": "Re_P_4",
 			"function": "OtherRandomizer",
 			"card": "Capitalism",
@@ -6428,8 +6429,8 @@
 			"costdebt": "0",
 			"rules": "During your turns, Actions with +$ amounts in their text are also Treasures."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "501",
 			"setid": "Re_P_5",
 			"function": "OtherRandomizer",
 			"card": "Cathedral",
@@ -6441,8 +6442,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, trash a card from your hand."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "502",
 			"setid": "Re_P_6",
 			"function": "OtherRandomizer",
 			"card": "Citadel",
@@ -6454,8 +6455,8 @@
 			"costdebt": "0",
 			"rules": "The first time you play an Action card during each of your turns, play it again afterwards."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "503",
 			"setid": "Re_P_7",
 			"function": "OtherRandomizer",
 			"card": "City Gate",
@@ -6467,8 +6468,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, +1 Card, then put a card from your hand onto your deck."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "504",
 			"setid": "Re_P_8",
 			"function": "OtherRandomizer",
 			"card": "Crop Rotation",
@@ -6480,8 +6481,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, you may discard a Victory card for +2 Cards."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "505",
 			"setid": "Re_P_9",
 			"function": "OtherRandomizer",
 			"card": "Exploration",
@@ -6493,8 +6494,8 @@
 			"costdebt": "0",
 			"rules": "At the end of your Buy phase, if you didn't buy any cards, +1 Coffers and +1 Villager."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "506",
 			"setid": "Re_P_10",
 			"function": "OtherRandomizer",
 			"card": "Fair",
@@ -6506,8 +6507,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, +1 Buy."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "507",
 			"setid": "Re_P_11",
 			"function": "OtherRandomizer",
 			"card": "Fleet",
@@ -6519,8 +6520,8 @@
 			"costdebt": "0",
 			"rules": "After the game ends, there's an extra round of turns just for players with this."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "508",
 			"setid": "Re_P_12",
 			"function": "OtherRandomizer",
 			"card": "Guildhall",
@@ -6532,8 +6533,8 @@
 			"costdebt": "0",
 			"rules": "When you gain a Treasure, +1 Coffers."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "509",
 			"setid": "Re_P_13",
 			"function": "OtherRandomizer",
 			"card": "Innovation",
@@ -6545,8 +6546,8 @@
 			"costdebt": "0",
 			"rules": "The first time you gain an Action card in each of your turns, you may set it aside. If you do, play it."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "510",
 			"setid": "Re_P_14",
 			"function": "OtherRandomizer",
 			"card": "Pageant",
@@ -6558,8 +6559,8 @@
 			"costdebt": "0",
 			"rules": "At the end of your Buy phase, you may pay $1 for +1 Coffers."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "511",
 			"setid": "Re_P_15",
 			"function": "OtherRandomizer",
 			"card": "Piazza",
@@ -6571,8 +6572,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, reveal the top card of your deck. If it's an Action, play it."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "512",
 			"setid": "Re_P_16",
 			"function": "OtherRandomizer",
 			"card": "Road Network",
@@ -6584,8 +6585,8 @@
 			"costdebt": "0",
 			"rules": "When another player gains a Victory card, +1 Card."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "513",
 			"setid": "Re_P_17",
 			"function": "OtherRandomizer",
 			"card": "Sewers",
@@ -6597,8 +6598,8 @@
 			"costdebt": "0",
 			"rules": "When you trash a card other than with this, you may trash a card from your hand."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "514",
 			"setid": "Re_P_18",
 			"function": "OtherRandomizer",
 			"card": "Silos",
@@ -6610,8 +6611,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, discard any number of Coppers, revealed, and draw that many cards."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "515",
 			"setid": "Re_P_19",
 			"function": "OtherRandomizer",
 			"card": "Sinister Plot",
@@ -6623,8 +6624,8 @@
 			"costdebt": "0",
 			"rules": "At the start of your turn, add a token here, or remove your tokens here for +1 Card each."
 		},
-    {
-			"id": "xxx",
+		{
+			"id": "516",
 			"setid": "Re_P_20",
 			"function": "OtherRandomizer",
 			"card": "Star Chart",
