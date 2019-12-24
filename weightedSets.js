@@ -12,7 +12,7 @@ var setMins = {
     "Adventures": 3,
     "Empires": 3,
     "Nocturne": 3,
-    "Renaissance": 4,
+    "Renaissance": 3,
     "Promos": 1
 }
 
