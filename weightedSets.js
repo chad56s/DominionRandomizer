@@ -13,6 +13,7 @@ var setMins = {
     "Empires": 3,
     "Nocturne": 3,
     "Renaissance": 3,
+    "Menagerie": 4,
     "Promos": 1
 }
 
@@ -141,8 +142,8 @@ var weightedPicker = function(cards, filterKingdom) {
             }
             if(set == "OtherRandomizers") {
                 otherRandomizers = otherRandomizers.concat(weightedSets[set].selectCards());
-                if(++numOtherRandomizers == 2)
-                    weightedSets[set].setMin(0);
+                //if(++numOtherRandomizers == 2)
+                //    weightedSets[set].setMin(0);
             }
             else {
                 draws = weightedSets[set].selectCards();
@@ -153,10 +154,28 @@ var weightedPicker = function(cards, filterKingdom) {
             }
 
         }
-
+        //total hack, but if I plan on doing it later in new angular, so what?
+        otherRandomizers = this.filterOtherRandomizers(otherRandomizers);
         return kingdom.concat(otherRandomizers);
     }
 
+    this.filterOtherRandomizers = function(otherRandos){
+        //HACK!
+        var numWays = 0;
+        var maxWays = 1;
+        var maxAll = 2;
+
+        var filtered = [];
+        for(var i=0; i<otherRandos.length; i++){
+            if(filtered.length == maxAll)
+                break;
+            if(otherRandos[i].type != "Way" || numWays < maxWays)
+                filtered.push(otherRandos[i]);
+            if(otherRandos[i].type == "Way")
+                numWays++;
+        }
+        return filtered;
+    }
     var test = this.randMax;
 
 }

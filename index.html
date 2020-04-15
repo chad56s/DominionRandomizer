@@ -93,6 +93,13 @@
 						Projects:
 						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterProjectCards | orderBy:'card'" title="{{card.rules}}">{{card.card}} ({{displayCost(card)}}) ({{card.set_display}})</li>
 					</p>
+					<p ng-if="my_kingdom.otherRandomizers.filter(filterWayCards).length > 0">
+						Ways:
+						<li ng-repeat="card in my_kingdom.otherRandomizers | filter:filterWayCards | orderBy:'card'" title="{{card.rules}}">
+							{{card.card}} ({{card.set_display}})
+							<span ng-if="card.card=='Way of the Mouse'" class='way-of-mouse-card'>({{my_kingdom.mouse_action.card}} ({{my_kingdom.mouse_action.set_display}}))</span>
+						</li>
+					</p>
 				</div>
 			</div>
 		</div>

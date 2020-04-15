@@ -4,17 +4,18 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 
 	var SET_DARK_AGES = "Dark Ages";
 	var SET_PROSPERITY = "Prosperity";
-  
+
 	var FUNCTION_KINGDOM = "Kingdom";
-  var FUNCTION_OTHER_RANDOMIZER = "OtherRandomizer";
+	var FUNCTION_OTHER_RANDOMIZER = "OtherRandomizer";
 
   //KINGDOM CARD TYPES
 	var TYPE_ACTION = "Action";
   
-  //OTHER RANDOMIZER CARD TYPES
-  var TYPE_EVENT = "Event";
-  var TYPE_LANDMARK = "Landmark";
-  var TYPE_PROJECT = "Project";
+	//OTHER RANDOMIZER CARD TYPES
+	var TYPE_EVENT = "Event";
+	var TYPE_LANDMARK = "Landmark";
+	var TYPE_PROJECT = "Project";
+	var TYPE_WAY = "Way";
 	
 	//SPECIFIC KINGDOM CARDS
 	var CARD_BLACK_MARKET = "Black Market";
@@ -22,6 +23,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	
 	//SPECIFIC LANDMARKS
 	var CARD_OBELISK = "Obelisk";
+
+	//SPECIFIC WAYS
+	var CARD_WAY_OF_THE_MOUSE = "Way of the Mouse";
 	
 	var SORT_SET_BY_NAME = 'name_display';
 	var SORT_SET_BY_ORDER = 'release_order';
@@ -29,19 +33,20 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	var SORT_CARDS_BY_COST = ['costcoins','costpotions','costdebt','card'];
 	var SORT_CARDS_BY_NAME = "['card']";
 	var SORT_CARDS_BY_SET = "[cardSetSortOrder,'card']";
-  var SORT_CARDS_BY_DRAWN = "[]";
+	var SORT_CARDS_BY_DRAWN = "[]";
 	
 	function resetMyKingdom() {	
 
 		$scope.my_kingdom = {
 			kingdom_cards: [],
-      otherRandomizers: [],
+			otherRandomizers: [],
 			blackmarket: [],
 			blackmarket_flop: [],
 			bane: null,
 			obelisk_pile: null,
 			use_col_plat: false,
-			use_shelters: false
+			use_shelters: false,
+			mouse_action: null
 		};
 		$scope.blackmarket_card_picked = false;
 	}
@@ -82,9 +87,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		return index;
 	}
   
-  function cardIsType(card, type){
-    return card.type.indexOf(type) != -1
-  }
+	function cardIsType(card, type){
+		return card.type.indexOf(type) != -1
+	}
 		
 	/*
 	*
@@ -113,6 +118,18 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			while($scope.my_kingdom.blackmarket.length < 30)
 				$scope.my_kingdom.blackmarket.push(drawCard(deck,$scope.filterKingdomCards));
 		}
+	}
+
+	function addWayOfMouseAction(deck) {
+		var isEligibleAction = function(card) { 
+			return	card.function == FUNCTION_KINGDOM &&
+					cardIsType(card,TYPE_ACTION) &&
+					card.costcoins >=2 && 
+					card.costcoins <= 3 && 
+					card.costpotions == 0 && 
+					card.costdebt == 0;
+		}
+		$scope.my_kingdom.mouse_action = drawCard(deck,isEligibleAction);
 	}
 	
 	/*
@@ -266,18 +283,23 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.filterOtherRandomizerCards = function(card,index,ar) {
 		return card.function == FUNCTION_OTHER_RANDOMIZER;
 	}
-  //FILTER: is the card a kingdom card?
-  $scope.filterEventCards = function(card,index,ar) {
-      return cardIsType(card,TYPE_EVENT) && $scope.filterOtherRandomizerCards(card,index,ar);
-  }
-  //FILTER: is the card a landmark card?
-  $scope.filterLandmarkCards = function(card,index,ar) {
-      return cardIsType(card,TYPE_LANDMARK) && $scope.filterOtherRandomizerCards(card,index,ar);
-  }
-  //FILTER: is the card a kingdom card?
-  $scope.filterProjectCards = function(card,index,ar) {
-      return cardIsType(card,TYPE_PROJECT) && $scope.filterOtherRandomizerCards(card,index,ar);
-  }
+	//FILTER: is the card a kingdom card?
+	$scope.filterEventCards = function(card,index,ar) {
+		return cardIsType(card,TYPE_EVENT) && $scope.filterOtherRandomizerCards(card,index,ar);
+	}
+	//FILTER: is the card a landmark card?
+	$scope.filterLandmarkCards = function(card,index,ar) {
+		return cardIsType(card,TYPE_LANDMARK) && $scope.filterOtherRandomizerCards(card,index,ar);
+	}
+	//FILTER: is the card a project card?
+	$scope.filterProjectCards = function(card,index,ar) {
+		return cardIsType(card,TYPE_PROJECT) && $scope.filterOtherRandomizerCards(card,index,ar);
+	}
+	//FILTER: is the card a way card?
+	$scope.filterWayCards = function(card,index,ar) {
+		return cardIsType(card,TYPE_WAY) && $scope.filterOtherRandomizerCards(card,index,ar);
+	}
+	  
 	//FILTER: is the card an action card?
 	$scope.filterActionCards = function(card,index,ar) {
 		return cardIsType(card,TYPE_ACTION) && $scope.filterKingdomCards(card,index,ar);
@@ -312,7 +334,8 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.my_settings = {
 		events: {min: 0, max: 2},
 		landmarks: {min: 0, max: 2},
-    projects: {min: 0, max: 2},
+    	projects: {min: 0, max: 2},
+		ways: {min: 0, max: 1},
 		otherRandomizersTotal: {min: 0, max: 2},
 		sort_sets_by: SORT_SET_BY_ORDER,
 		sort_cards_by: [$scope.cardSetSortOrder,'card']
@@ -320,43 +343,46 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
   
 	$scope.createMyWeightedKingdom = function() {
 
-    resetMyKingdom();
+		resetMyKingdom();
 
 		var validRandomizers = $scope.randomizer_cards.filter($scope.filterCardInSelectedSet)
 		var myWeightedPicker = new weightedPicker($scope.all_data, $scope.filterCardInSelectedSet);
 
-    var kingdom = myWeightedPicker.selectCards();
+		var kingdom = myWeightedPicker.selectCards();
 
-    $scope.my_kingdom.kingdom_cards = kingdom.filter($scope.filterKingdomCards);
-    $scope.my_kingdom.otherRandomizers = kingdom.filter($scope.filterOtherRandomizerCards);
+		$scope.my_kingdom.kingdom_cards = kingdom.filter($scope.filterKingdomCards);
+		$scope.my_kingdom.otherRandomizers = kingdom.filter($scope.filterOtherRandomizerCards);
 
-    // narrow down the valid randomizers to just kingdom cards (take the OTHER_RANDOMIZERS out) and
-    // remove the cards we've already selected so that we don't pick them again for things like Young Witch and Obelisk
-    var validRandomizers = (validRandomizers.filter($scope.filterKingdomCards)).filter(function(randomizer_card) {
-      return !$scope.my_kingdom.kingdom_cards.find(function(kingdom_card){ return randomizer_card == kingdom_card; });
-    });
+		// narrow down the valid randomizers to just kingdom cards (take the OTHER_RANDOMIZERS out) and
+		// remove the cards we've already selected so that we don't pick them again for things like Young Witch and Obelisk
+		var validRandomizers = (validRandomizers.filter($scope.filterKingdomCards)).filter(function(randomizer_card) {
+			return !$scope.my_kingdom.kingdom_cards.find(function(kingdom_card){ return randomizer_card == kingdom_card; });
+		});
 
-    if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_YOUNG_WITCH))
-        addBane(validRandomizers);
-    if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_BLACK_MARKET))
-        createBlackMarket(validRandomizers);
-    //check black market for young witch - I thought it best to do bane first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
-    if($scope.cardInDeck($scope.my_kingdom.blackmarket,CARD_YOUNG_WITCH))
-        addBane(validRandomizers);
-    //designate random Action supply pile for the Obelisk
-    if($scope.cardInDeck($scope.my_kingdom.otherRandomizers,CARD_OBELISK))
-        chooseObeliskPile();
+		if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_YOUNG_WITCH))
+			addBane(validRandomizers);
+		//pick a random Action for The Way of the Mouse
+		if($scope.cardInDeck($scope.my_kingdom.otherRandomizers,CARD_WAY_OF_THE_MOUSE))
+			addWayOfMouseAction(validRandomizers);
+		if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_BLACK_MARKET))
+			createBlackMarket(validRandomizers);
+		//check black market for young witch - I thought it best to do bane and way of mouse first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
+		if($scope.cardInDeck($scope.my_kingdom.blackmarket,CARD_YOUNG_WITCH))
+			addBane(validRandomizers);
+		//designate random Action supply pile for the Obelisk
+		if($scope.cardInDeck($scope.my_kingdom.otherRandomizers,CARD_OBELISK))
+			chooseObeliskPile();
 
-    var ucpnum1 = getRandomNumber(0,9);
-    var ucpnum2 = getRandomNumber(0,9);
-    var usnum1 = getRandomNumber(0,9);
-    var usnum2 = getRandomNumber(0,9);
-    $scope.my_kingdom.use_col_plat = $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY || $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY;
-    $scope.my_kingdom.use_shelters = $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES || $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES;
+		var ucpnum1 = getRandomNumber(0,9);
+		var ucpnum2 = getRandomNumber(0,9);
+		var usnum1 = getRandomNumber(0,9);
+		var usnum2 = getRandomNumber(0,9);
+		$scope.my_kingdom.use_col_plat = $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY || $scope.my_kingdom.kingdom_cards[ucpnum1].set == SET_PROSPERITY;
+		$scope.my_kingdom.use_shelters = $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES || $scope.my_kingdom.kingdom_cards[usnum1].set == SET_DARK_AGES;
 
-    if($scope.my_kingdom.use_col_plat) $scope.stats.w_col_plat++;
-    if($scope.my_kingdom.use_shelters) $scope.stats.w_shelt++;
-    if($scope.my_kingdom.use_shelters && $scope.my_kingdom.use_col_plat) $scope.stats.w_both++;
+		if($scope.my_kingdom.use_col_plat) $scope.stats.w_col_plat++;
+		if($scope.my_kingdom.use_shelters) $scope.stats.w_shelt++;
+		if($scope.my_kingdom.use_shelters && $scope.my_kingdom.use_col_plat) $scope.stats.w_both++;
 
 	}
 
@@ -378,40 +404,44 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			var passedUpDeck = [];
 			while($scope.my_kingdom.kingdom_cards.length < 10) {
 				var card = drawCard(validRandomizers);
-        var cardUsed = false;
+				var cardUsed = false;
         
 				if(card.function == FUNCTION_KINGDOM) {
 					$scope.my_kingdom.kingdom_cards.push(card);
-          cardUsed = true;
+					cardUsed = true;
 					card.num_times_picked++;
 				}
-        else if($scope.my_kingdom.otherRandomizers.length < $scope.my_settings.otherRandomizersTotal.max)
-        {
-          var filter;
-          var setting;
-          
-          if(cardIsType(card,TYPE_EVENT)) {
-              filter = $scope.filterEventCards;
-              setting = $scope.my_settings.events.max;
-          }
-          else if (cardIsType(card,TYPE_LANDMARK)) {
-              filter = $scope.filterLandmarkCards;
-              setting = $scope.my_settings.landmarks.max;
-          }
-          else if (cardIsType(card,TYPE_PROJECT)) {
-              filter = $scope.filterProjectCards;
-              setting = $scope.my_settings.projects.max;
-          }
-          if($scope.my_kingdom.otherRandomizers.filter(filter).length < setting){
-            $scope.my_kingdom.otherRandomizers.push(card);
-            cardUsed = true;
-            card.num_times_picked++;
-          }
-            
-        }         
+        		else if($scope.my_kingdom.otherRandomizers.length < $scope.my_settings.otherRandomizersTotal.max)
+        		{
+					var filter;
+					var setting;
+					
+					if(cardIsType(card,TYPE_EVENT)) {
+						filter = $scope.filterEventCards;
+						setting = $scope.my_settings.events.max;
+					}
+					else if (cardIsType(card,TYPE_LANDMARK)) {
+						filter = $scope.filterLandmarkCards;
+						setting = $scope.my_settings.landmarks.max;
+					}
+					else if (cardIsType(card,TYPE_PROJECT)) {
+						filter = $scope.filterProjectCards;
+						setting = $scope.my_settings.projects.max;
+					}
+					else if (cardIsType(card,TYPE_WAY)) {
+						filter = $scope.filterWayCards;
+						setting = $scope.my_settings.ways.max;
+					}
+					if($scope.my_kingdom.otherRandomizers.filter(filter).length < setting){
+						$scope.my_kingdom.otherRandomizers.push(card);
+						cardUsed = true;
+						card.num_times_picked++;
+					}
+						
+				}         
 				
-        if(!cardUsed)
-          passedUpDeck.push(card);
+        		if(!cardUsed)
+    				passedUpDeck.push(card);
 			}
 			//put the passed up cards back into the randomizers
 			validRandomizers = validRandomizers.concat(passedUpDeck);
@@ -453,9 +483,12 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			
 			if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_YOUNG_WITCH))
 				addBane(validRandomizers);
+			//pick a random Action for The Way of the Mouse
+			if($scope.cardInDeck($scope.my_kingdom.otherRandomizers,CARD_WAY_OF_THE_MOUSE))
+				addWayOfMouseAction(validRandomizers);
 			if($scope.cardInDeck($scope.my_kingdom.kingdom_cards,CARD_BLACK_MARKET))
 				createBlackMarket(validRandomizers);
-			//check black market for young witch - I thought it best to do bane first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
+			//check black market for young witch - I thought it best to do bane and way of mouse first for kingdom cards so that black market would have less of a chance of sucking up all the 2s and 3s
 			if($scope.cardInDeck($scope.my_kingdom.blackmarket,CARD_YOUNG_WITCH))
 				addBane(validRandomizers);
 			//designate random Action supply pile for the Obelisk
