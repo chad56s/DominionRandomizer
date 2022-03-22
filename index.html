@@ -100,6 +100,10 @@
 							<span ng-if="card.card=='Way of the Mouse'" class='way-of-mouse-card'>({{my_kingdom.mouse_action.card}} ({{my_kingdom.mouse_action.set_display}}))</span>
 						</li>
 					</p>
+					<p ng-if="my_kingdom.allies.length > 0">
+						Ally:
+						<li ng-repeat="card in my_kingdom.allies | orderBy:'card'" title="{{card.rules}}">{{card.card}} ({{card.set_display}})</li>
+					</p>
 				</div>
 			</div>
 		</div>

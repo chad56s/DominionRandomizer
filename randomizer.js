@@ -7,16 +7,21 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 
 	var FUNCTION_KINGDOM = "Kingdom";
 	var FUNCTION_OTHER_RANDOMIZER = "OtherRandomizer";
+	var FUNCTION_ALLY = "Ally";
+
 
   //KINGDOM CARD TYPES
 	var TYPE_ACTION = "Action";
+	var TYPE_LIAISON = "Liaison";
+	//split types
+	var SPLIT_TYPES = ["Augur","Clash","Fort","Odyssey","Townsfolk","Wizard"];
   
 	//OTHER RANDOMIZER CARD TYPES
 	var TYPE_EVENT = "Event";
 	var TYPE_LANDMARK = "Landmark";
 	var TYPE_PROJECT = "Project";
 	var TYPE_WAY = "Way";
-	
+
 	//SPECIFIC KINGDOM CARDS
 	var CARD_BLACK_MARKET = "Black Market";
 	var CARD_YOUNG_WITCH = "Young Witch";
@@ -40,6 +45,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		$scope.my_kingdom = {
 			kingdom_cards: [],
 			otherRandomizers: [],
+			allies: [],
 			blackmarket: [],
 			blackmarket_flop: [],
 			bane: null,
@@ -131,6 +137,10 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		}
 		$scope.my_kingdom.mouse_action = drawCard(deck,isEligibleAction);
 	}
+
+	function chooseAlly() {
+		$scope.my_kingdom.allies.push(selectCard($scope.ally_cards,function(c){ return true; }));
+	}
 	
 	/*
 	*	choose a RandomKingdomPile. Useful for things like picking a pile for Obelisk (others?)
@@ -178,6 +188,8 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.all_cards = [];
 	$scope.randomizer_cards = [];
 	$scope.kingdom_cards = [];
+	$scope.ally_cards = [];
+	$scope.split_cards = [];	//augurs, wizards, townsfolk, etc.
 	$scope.blackmarket_card_picked = false;
 	
 	Object.defineProperties($scope, {
@@ -225,7 +237,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			//start out selecting  all sets
 			//TODO: this should all be part of my_settings
 			$scope.sets.forEach(function(s) {
-					s.selected = true;
+					s.selected = false;
 					s.min = 0;
 					s.max = 10;
 					
@@ -249,6 +261,11 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 					$scope.randomizer_cards.push(card);
 				if(card.function == FUNCTION_KINGDOM)
 					$scope.kingdom_cards.push(card);
+				else if(card.function == FUNCTION_ALLY)
+					$scope.ally_cards.push(card);
+				else if(SPLIT_TYPES.indexOf(card.function) >= 0)
+					$scope.split_cards.push(card);
+				
 				
 				Object.defineProperty(card,"set_display",{get: function() {
 					var set = $scope.filterCardInSelectedSet(this);
@@ -299,12 +316,19 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.filterWayCards = function(card,index,ar) {
 		return cardIsType(card,TYPE_WAY) && $scope.filterOtherRandomizerCards(card,index,ar);
 	}
-	  
 	//FILTER: is the card an action card?
 	$scope.filterActionCards = function(card,index,ar) {
 		return cardIsType(card,TYPE_ACTION) && $scope.filterKingdomCards(card,index,ar);
 	}
-		
+	//FILTER: is the card an ally card?
+	$scope.filterAllyCards = function(card,index,ar) {
+		return cardIsType(card,TYPE_ALLY)
+	}
+	//FILTER: is the card in a split pile?
+	$scope.filterSplitCards = function(card,index,ar) {
+		return SPLIT_TYPES.indexOf(card.function) >= 0;
+	}
+
 	$scope.cardSetSortOrder = function(card) {
 		return $scope.sets.find(function(s) { return s.name == card.set})[$scope.my_settings.sort_sets_by];
 	}
@@ -315,6 +339,29 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	
 	$scope.cardInDeck = function(deck,text) {
 		return deck.some(function(c) { return c.card == text});
+	}
+
+	$scope.needAlly = function(deck) {
+		return deck.some(function(c) { 
+			var drawAlly = false;
+			if(cardIsType(c, TYPE_LIAISON))
+				drawAlly = true;
+			else {
+				//see if it's a split pile. If it is, check all the cards with that function to see if any of them is a Liaison as well.
+				//(e.g. Students in the Wizard split pile)
+				for(const st of SPLIT_TYPES){
+					if(cardIsType(c, st))
+					{
+						console.log(c.card + " is of type: " + st);
+						console.log("there are " + $scope.split_cards.length + " split cards");
+						drawAlly = $scope.split_cards
+							.filter(function(c1){ return c1.function == st;})
+							.some(function(c2) { return cardIsType(c2, TYPE_LIAISON);})
+					}
+				}
+			}
+			return drawAlly;
+		});
 	}
 	
 	$scope.displayCost = function(card) {
@@ -334,7 +381,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 	$scope.my_settings = {
 		events: {min: 0, max: 2},
 		landmarks: {min: 0, max: 2},
-    	projects: {min: 0, max: 2},
+		projects: {min: 0, max: 2},
 		ways: {min: 0, max: 1},
 		otherRandomizersTotal: {min: 0, max: 2},
 		sort_sets_by: SORT_SET_BY_ORDER,
@@ -372,6 +419,9 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 		//designate random Action supply pile for the Obelisk
 		if($scope.cardInDeck($scope.my_kingdom.otherRandomizers,CARD_OBELISK))
 			chooseObeliskPile();
+		//select an ally if needed
+		if($scope.needAlly($scope.my_kingdom.kingdom_cards))
+			chooseAlly();
 
 		var ucpnum1 = getRandomNumber(0,9);
 		var ucpnum2 = getRandomNumber(0,9);

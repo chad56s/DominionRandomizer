@@ -14,6 +14,7 @@ var setMins = {
     "Nocturne": 3,
     "Renaissance": 3,
     "Menagerie": 4,
+    "Allies": 4,
     "Promos": 1
 }
 
