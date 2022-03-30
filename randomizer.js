@@ -237,7 +237,7 @@ app.controller("domRdmz_ctrl",["$scope","$http",function($scope,$http){
 			//start out selecting  all sets
 			//TODO: this should all be part of my_settings
 			$scope.sets.forEach(function(s) {
-					s.selected = false;
+					s.selected = true;
 					s.min = 0;
 					s.max = 10;
 					
